@@ -1,5 +1,8 @@
 package com.mycompany.teacher;
 
+import com.mycompany.teacher.exsampl.Settings;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +15,16 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainFrameTeacher.fxml"));
+        FXMLLoader fXMLLoader = new FXMLLoader();
+        fXMLLoader.setLocation(getClass().getResource("/fxml/MainFrameTeacher.fxml"));
+        fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", new Locale("ukr")));
+        
+        Parent root = fXMLLoader.load();
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("Teacher");
+        stage.setTitle(fXMLLoader.getResources().getString("main.frame"));
         stage.setScene(scene);
         stage.show();
     }
@@ -31,6 +38,8 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Settings.setTimeout(3);
+        Settings.setIndexLanuege("RUS");
         launch(args);
     }
 

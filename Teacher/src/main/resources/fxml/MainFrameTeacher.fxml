@@ -11,11 +11,14 @@
     <center>
         <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="Word" />
+                <Label text="%key.labelWord">
+               <VBox.margin>
+                  <Insets bottom="6.0" />
+               </VBox.margin></Label>
                 <TextArea fx:id="textAreaWord" depthTest="DISABLE" disable="true" />
-                <Label fx:id="textAreaTransleate" text="Translate">
+                <Label fx:id="textAreaTransleate" text="%key.labelTranslate">
                     <VBox.margin>
-                        <Insets top="6.0" />
+                        <Insets bottom="6.0" top="6.0" />
                     </VBox.margin>
                 </Label>
                 <TextArea fx:id="textAreaTranslate" />
@@ -26,7 +29,7 @@
         </VBox>
     </center>
     <bottom>
-        <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" prefHeight="25.0" prefWidth="292.0" text="Ok" BorderPane.alignment="CENTER">
+        <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" prefHeight="25.0" prefWidth="288.0" text="%key.buttonOk" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="12.0" left="12.0" right="12.0" />
             </BorderPane.margin>
@@ -43,19 +46,19 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="buttonExit" mnemonicParsing="false" onAction="#actionButtonExit" prefHeight="25.0" prefWidth="96.0" text="Exit">
+            <Button fx:id="buttonExit" mnemonicParsing="false" onAction="#actionButtonExit" prefHeight="25.0" prefWidth="96.0" text="%key.buttonExit">
                <GridPane.margin>
-                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionBUttonLearn" prefHeight="25.0" prefWidth="101.0" text="Learn" GridPane.columnIndex="1">
+            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionBUttonLearn" prefHeight="25.0" prefWidth="101.0" text="%key.buttonLearn" GridPane.columnIndex="1">
                <GridPane.margin>
-                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="Settings" GridPane.columnIndex="2">
+            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="%key.buttonSettings" GridPane.columnIndex="2">
                <GridPane.margin>
-                  <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                </GridPane.margin>
             </Button>
          </children>
