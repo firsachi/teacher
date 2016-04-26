@@ -40,21 +40,22 @@ public class ControllerDialogSettings implements Initializable{
     @FXML Button buttonOk;
     
     @FXML
-    private Button buttonCansel;
+    private Button buttonCancel;
     
     public ControllerDialogSettings() {
-        this.arrayLanguage = FXCollections.observableArrayList("ENG","RUS");
+        this.arrayLanguage = FXCollections.observableArrayList("eng","ukr");
         this.arrayTimeout = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
     }
     
     @FXML
     private void actionButtonOk(){
-        System.out.println();
+        Settings.setIndexLanuege((String) comboBoxLanguage.getValue());
+        actionButtonCancel();
     }
 
     @FXML
-    private void actionButtonCansel(){
-        Stage stage = (Stage) buttonCansel.getScene().getWindow();
+    private void actionButtonCancel(){
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
     

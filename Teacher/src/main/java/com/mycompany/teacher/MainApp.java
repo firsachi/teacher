@@ -17,7 +17,7 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fXMLLoader = new FXMLLoader();
         fXMLLoader.setLocation(getClass().getResource("/fxml/MainFrameTeacher.fxml"));
-        fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", new Locale("ukr")));
+        fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", new Locale("eng")));
         
         Parent root = fXMLLoader.load();
         
@@ -26,6 +26,7 @@ public class MainApp extends Application {
         
         stage.setTitle(fXMLLoader.getResources().getString("main.frame"));
         stage.setScene(scene);
+        stage.sizeToScene();
         stage.show();
     }
 
@@ -39,7 +40,7 @@ public class MainApp extends Application {
      */
     public static void main(String[] args) {
         Settings.setTimeout(3);
-        Settings.setIndexLanuege("RUS");
+        Settings.setIndexLanuege("eng");
         launch(args);
     }
 

@@ -7,27 +7,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="127.0" prefWidth="307.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.ControllerDialogSettings">
+<BorderPane prefHeight="117.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.ControllerDialogSettings">
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" columnHalignment="CENTER" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#actionButtonOk" prefHeight="25.0" prefWidth="108.0" text="Ok">
-                     <GridPane.margin>
-                        <Insets right="6.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button fx:id="buttonCansel" mnemonicParsing="false" onAction="#actionButtonCansel" prefHeight="25.0" prefWidth="105.0" text="Cancel" GridPane.columnIndex="1" />
-               </children>
-            </GridPane>
+            <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#actionButtonOk" prefHeight="25.0" prefWidth="108.0" text="%key.buttonOk">
+               <FlowPane.margin>
+                  <Insets right="3.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#actionButtonCancel" prefHeight="25.0" prefWidth="105.0" text="%key.buttonCancel">
+               <FlowPane.margin>
+                  <Insets left="3.0" />
+               </FlowPane.margin>
+            </Button>
          </children>
          <BorderPane.margin>
             <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
@@ -39,7 +32,7 @@
          <children>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Label fx:id="labelLanguge" text="Language">
+                  <Label fx:id="labelLanguge" text="%key.labelLanguge">
                      <HBox.margin>
                         <Insets right="6.0" />
                      </HBox.margin>
@@ -52,7 +45,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT">
                <children>
-                  <Label fx:id="labelTimeout" text="Timeout">
+                  <Label fx:id="labelTimeout" text="%key.labelTimeout">
                      <HBox.margin>
                         <Insets right="6.0" />
                      </HBox.margin>
