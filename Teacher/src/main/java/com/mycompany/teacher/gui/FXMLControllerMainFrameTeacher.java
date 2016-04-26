@@ -31,6 +31,9 @@ public class FXMLControllerMainFrameTeacher implements Initializable {
     @FXML
     private Button buttonExit;
     
+    @FXML 
+    private Button buttonOk;
+    
     @FXML
     private void actionButtonExit(){
         Stage stage = (Stage) buttonExit.getScene().getWindow();
@@ -64,7 +67,8 @@ public class FXMLControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonOkAction(){
-        
+        Stage stage = (Stage) buttonOk.getScene().getWindow();
+
     }
     
     @Override
