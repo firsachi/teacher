@@ -1,20 +1,17 @@
 package com.mycompany.teacher;
 
-import com.mycompany.teacher.exsampl.Settings;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-public class MainApp extends Application {
-
+public class MainApp extends Application{
+    
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         FXMLLoader fXMLLoader = new FXMLLoader();
         fXMLLoader.setLocation(getClass().getResource("/fxml/MainFrameTeacher.fxml"));
         fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", new Locale("eng")));
@@ -24,10 +21,10 @@ public class MainApp extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle(fXMLLoader.getResources().getString("main.frame"));
-        stage.setScene(scene);
-        stage.sizeToScene();
-        stage.show();
+        primaryStage.setTitle(fXMLLoader.getResources().getString("main.frame"));
+        primaryStage.setScene(scene);
+        primaryStage.sizeToScene();
+        primaryStage.show();
     }
 
     /**
@@ -39,9 +36,11 @@ public class MainApp extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Settings.setTimeout(3);
-        Settings.setIndexLanuege("eng");
+        ControllerMain controllerMain = new ControllerMain();   
         launch(args);
+        controllerMain.initializable();
     }
+
+    
 
 }

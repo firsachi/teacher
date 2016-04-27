@@ -15,8 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,24 +22,23 @@ import javafx.stage.Stage;
 public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
-    private Label label;
-    
-    @FXML
     private TextArea textAreaTranslate;
     
     @FXML
-    private MenuBar menuBarMainFarme;
+    private Button buttonExit;
+    
+    @FXML 
+    private Button buttonLearn;
     
     @FXML
-    private Button buttonExit;
+    private Button nuttonSettings;
     
     @FXML 
     private Button buttonOk;
     
     @FXML
     private void actionButtonExit(){
-        Stage stage = (Stage) buttonExit.getScene().getWindow();
-        stage.close();
+        System.exit(0);
     }
     
     @FXML
@@ -85,7 +82,8 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonOkAction(){
-        
+        Stage stage = (Stage) buttonOk.getScene().getWindow();
+        stage.hide();
     }
     
     @Override
