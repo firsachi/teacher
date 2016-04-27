@@ -7,15 +7,18 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextArea;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ControllerMainFrameTeacher implements Initializable {
@@ -42,7 +45,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     }
     
     @FXML
-    private void actionButtonSettings() {
+    private void actionButtonSettings(ActionEvent event) {
         try {
             FXMLLoader fXMLLoader = new FXMLLoader();
             fXMLLoader.setLocation(getClass().getResource("/fxml/DialogSettings.fxml"));
@@ -53,6 +56,8 @@ public class ControllerMainFrameTeacher implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle(fXMLLoader.getResources().getString("key.title"));
             stage.sizeToScene();
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +65,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     }
     
     @FXML
-    private void actionButtonLearn(){
+    private void actionButtonLearn(ActionEvent event){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/DialogLearn.fxml"));
@@ -70,6 +75,8 @@ public class ControllerMainFrameTeacher implements Initializable {
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
             stage.setTitle(fxmlLoader.getResources().getString("key.title"));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
