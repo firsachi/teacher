@@ -34,9 +34,6 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML 
     private Button buttonOk;
-
-    public ControllerMainFrameTeacher(Scene scene) {
-    }
     
     @FXML
     private void actionButtonExit(){
