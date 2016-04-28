@@ -1,5 +1,6 @@
 package com.mycompany.teacher.gui;
 
+import com.mycompany.teacher.exsampl.Model;
 import com.mycompany.teacher.exsampl.Settings;
 import java.io.IOException;
 import java.net.URL;

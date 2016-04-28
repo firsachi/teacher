@@ -1,5 +1,7 @@
 package com.mycompany.teacher;
 
+import com.mycompany.teacher.exsampl.Model;
+import com.mycompany.teacher.exsampl.Settings;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -14,7 +16,8 @@ public class MainApp extends Application{
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fXMLLoader = new FXMLLoader();
         fXMLLoader.setLocation(getClass().getResource("/fxml/MainFrameTeacher.fxml"));
-        fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", new Locale("eng")));
+        fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleTeacher", 
+                new Locale(Settings.getIndexLanuege())));
         
         Parent root = fXMLLoader.load();
         
@@ -36,9 +39,8 @@ public class MainApp extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ControllerMain controllerMain = new ControllerMain();   
+        Model model = new Model(); 
         launch(args);
-        controllerMain.initializable();
     }
 
     
