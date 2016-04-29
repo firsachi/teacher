@@ -6,6 +6,7 @@
 package com.mycompany.teacher.exsampl;
 
 import com.mycompany.teacher.dao.Settings_dao;
+import java.util.Locale;
 import programmfolder.FolederProgramm;
 
 /**
@@ -14,7 +15,7 @@ import programmfolder.FolederProgramm;
  */
 public class SettingsApplication {
     private static String userApplicationFolder;
-    private static String indexLanuege;
+    private static Locale laocaleApplicatopn;
     private static int timeout;
     
     static {
@@ -23,8 +24,8 @@ public class SettingsApplication {
         settings_dao.getSettings();
     }
      
-    public static void setIndexLanuege(String indexLanuege) {
-        SettingsApplication.indexLanuege = indexLanuege;
+    public static void setLanuege(String lanuege) {
+        SettingsApplication.laocaleApplicatopn = new Locale(lanuege);
     }
 
     public static void setTimeout(Integer timeout) {
@@ -39,8 +40,11 @@ public class SettingsApplication {
         return timeout;
     }
 
-    public static String getIndexLanuege() {
-        return indexLanuege;
+    public static String getLanuege() {
+        return laocaleApplicatopn.getLanguage();
     }
     
+    public  static Locale getLocale(){
+        return laocaleApplicatopn;
+    }
 }

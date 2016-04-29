@@ -11,6 +11,6 @@ package com.mycompany.teacher.exsampl;
  */
 public interface Words {
     
-    String getWortd();
+    String getWord();
     String getTranslate();
 }

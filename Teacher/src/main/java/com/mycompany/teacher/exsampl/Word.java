@@ -24,7 +24,7 @@ public class Word implements Words{
     }
 
     @Override
-    public String getWortd() {
+    public String getWord() {
         return textWord;
     }
 

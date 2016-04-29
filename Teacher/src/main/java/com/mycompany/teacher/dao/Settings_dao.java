@@ -24,9 +24,9 @@ public class Settings_dao {
         try (PreparedStatement preparedStatement = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\firsov\\AppData\\Roaming\\teacher\\Teacher.db").prepareStatement(sql);) {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            SettingsApplication.setIndexLanuege(resultSet.getString(1));
+            SettingsApplication.setLanuege(resultSet.getString(1));
             SettingsApplication.setTimeout(resultSet.getInt(2));
-            System.out.println(SettingsApplication.getIndexLanuege());
+            System.out.println(SettingsApplication.getLanuege());
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -37,7 +37,7 @@ public class Settings_dao {
         try (PreparedStatement pr = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
             pr.setString(1, language);
             pr.setInt(2, timeout);
-            pr.setString(3, SettingsApplication.getIndexLanuege());
+            pr.setString(3, SettingsApplication.getLanuege());
             System.out.println(pr.executeUpdate());
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);

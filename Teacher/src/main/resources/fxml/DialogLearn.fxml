@@ -16,7 +16,7 @@
          <children>
             <HBox>
                <children>
-                  <ComboBox fx:id="comboBoxLearn" prefHeight="25.0" prefWidth="310.0">
+                  <ComboBox fx:id="comboBoxLesson" onAction="#actionComboboxLesson" prefHeight="25.0" prefWidth="310.0">
                      <HBox.margin>
                         <Insets right="6.0" />
                      </HBox.margin>
@@ -53,7 +53,7 @@
                   <Insets bottom="6.0" />
                </VBox.margin>
             </GridPane>
-            <TableView prefHeight="298.0" prefWidth="378.0">
+            <TableView fx:id="tableViewWord" prefHeight="298.0" prefWidth="378.0">
               <columns>
                 <TableColumn fx:id="tableColumnWord" prefWidth="189.0" text="%key.tableColumnWord" />
                 <TableColumn fx:id="tableColumnTranslate" prefWidth="188.0" text="%key.tableColumnTranslate" />

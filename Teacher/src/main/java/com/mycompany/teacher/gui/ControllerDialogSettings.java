@@ -27,12 +27,6 @@ public class ControllerDialogSettings implements Initializable{
     private final ObservableList<Integer> arrayTimeout;
     private final ObservableList<String> arrayLanguage;
     
-    @FXML
-    private Label labelLanguage;
-    
-    @FXML
-    private Label labelTimeout;
-    
     @FXML ComboBox comboBoxLanguage;
     
     @FXML
@@ -53,7 +47,7 @@ public class ControllerDialogSettings implements Initializable{
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.setSettings((String)comboBoxLanguage.getValue(),
                 (Integer) comboBoxTimeout.getValue());
-        SettingsApplication.setIndexLanuege((String) comboBoxLanguage.getValue());
+        SettingsApplication.setLanuege((String) comboBoxLanguage.getValue());
         SettingsApplication.setTimeout((Integer) comboBoxTimeout.getValue());
         actionButtonCancel();
     }
@@ -67,7 +61,7 @@ public class ControllerDialogSettings implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         comboBoxLanguage.setItems(arrayLanguage);
-        comboBoxLanguage.setValue(SettingsApplication.getIndexLanuege());
+        comboBoxLanguage.setValue(SettingsApplication.getLanuege());
         comboBoxTimeout.setItems(arrayTimeout);
         comboBoxTimeout.setValue(SettingsApplication.getTimeout());
     }
