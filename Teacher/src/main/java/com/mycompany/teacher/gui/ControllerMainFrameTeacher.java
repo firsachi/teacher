@@ -1,7 +1,7 @@
 package com.mycompany.teacher.gui;
 
 import com.mycompany.teacher.exsampl.Model;
-import com.mycompany.teacher.exsampl.Settings;
+import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -48,7 +48,7 @@ public class ControllerMainFrameTeacher implements Initializable {
             FXMLLoader fXMLLoader = new FXMLLoader();
             fXMLLoader.setLocation(getClass().getResource("/fxml/DialogSettings.fxml"));
             fXMLLoader.setResources(ResourceBundle.getBundle("locales.LocaleSettings", 
-                    new Locale(Settings.getIndexLanuege())));
+                    new Locale(SettingsApplication.getIndexLanuege())));
             Stage stage = new Stage();
             Parent root = fXMLLoader.load();
             stage.setScene(new Scene(root));
@@ -68,7 +68,7 @@ public class ControllerMainFrameTeacher implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/DialogLearn.fxml"));
             fxmlLoader.setResources(ResourceBundle.getBundle("locales.LocaleLearn",
-                    new Locale(Settings.getIndexLanuege())));
+                    new Locale(SettingsApplication.getIndexLanuege())));
             Stage stage = new Stage();
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));

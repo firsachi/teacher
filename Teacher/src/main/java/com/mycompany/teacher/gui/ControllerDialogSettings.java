@@ -6,7 +6,7 @@
 package com.mycompany.teacher.gui;
 
 import com.mycompany.teacher.dao.Settings_dao;
-import com.mycompany.teacher.exsampl.Settings;
+import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -53,8 +53,8 @@ public class ControllerDialogSettings implements Initializable{
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.setSettings((String)comboBoxLanguage.getValue(),
                 (Integer) comboBoxTimeout.getValue());
-        Settings.setIndexLanuege((String) comboBoxLanguage.getValue());
-        Settings.setTimeout((Integer) comboBoxTimeout.getValue());
+        SettingsApplication.setIndexLanuege((String) comboBoxLanguage.getValue());
+        SettingsApplication.setTimeout((Integer) comboBoxTimeout.getValue());
         actionButtonCancel();
     }
 
@@ -67,9 +67,9 @@ public class ControllerDialogSettings implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         comboBoxLanguage.setItems(arrayLanguage);
-        comboBoxLanguage.setValue(Settings.getIndexLanuege());
+        comboBoxLanguage.setValue(SettingsApplication.getIndexLanuege());
         comboBoxTimeout.setItems(arrayTimeout);
-        comboBoxTimeout.setValue(Settings.getTimeout());
+        comboBoxTimeout.setValue(SettingsApplication.getTimeout());
     }
     
 }

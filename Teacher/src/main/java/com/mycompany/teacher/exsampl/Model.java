@@ -16,8 +16,8 @@ public class Model {
     private Settings_dao settings_dao;
     
     public Model() {
-        settings_dao = new Settings_dao();
-        settings_dao.getSettings();
+        //settings_dao = new Settings_dao();
+        //settings_dao.getSettings();
     }
     
     
