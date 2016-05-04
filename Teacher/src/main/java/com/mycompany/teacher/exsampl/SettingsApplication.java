@@ -20,6 +20,7 @@ public class SettingsApplication {
     
     static {
         userApplicationFolder = FolederProgramm.pachProgamm();
+        System.out.println(userApplicationFolder);
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.getSettings();
     }

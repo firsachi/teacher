@@ -25,7 +25,7 @@ public class Word_dao {
     
     public ObservableList<Words> getAllWord(String lesson){
         ObservableList<Words> lessonWords = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM word WHERE name_learn=?";
+        String sql = "SELECT * FROM word WHERE lesson_id=?";
         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
             ps.setString(1, lesson);
             ResultSet resultSet = ps.executeQuery();
@@ -36,6 +36,18 @@ public class Word_dao {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lessonWords;
+    }
+    
+    public void addWordb(Words word, String lesson){
+        String sql = "INSERT INTO word (lesson_id,word,translate) VALUES (?,?,?);";
+        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
+            ps.setString(1, lesson);
+            ps.setString(2, word.getWord());
+            ps.setString(3, word.getTranslate());
+            System.out.println(ps.executeUpdate());
+        } catch (SQLException ex) {
+            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private Word initWord(ResultSet resultSet){

@@ -22,7 +22,8 @@ import javafx.collections.ObservableList;
 public class Lesson_dao {
     
     public ObservableList<String> getAllLesson(){
-        String sql = "SELECT * FROM learn";
+        String sql = "SELECT * FROM lesson";
+        System.out.println(SettingsApplication.getApplicationFolder());
         ObservableList<String> lessonList = FXCollections.observableArrayList();
         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
             ResultSet resultSet = ps.executeQuery();

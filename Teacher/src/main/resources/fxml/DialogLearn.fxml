@@ -37,12 +37,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonAddWord" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%key.buttonAddWord">
+                  <Button fx:id="buttonAddWord" mnemonicParsing="false" onAction="#actionButtonAdd" prefHeight="25.0" prefWidth="125.0" text="%key.buttonAddWord">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="buttonDeleteWord" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%key.buttonDeleteWord" GridPane.columnIndex="1">
+                  <Button fx:id="buttonDeleteWord" mnemonicParsing="false" onAction="#buttonDeleteWordAction" prefHeight="25.0" prefWidth="125.0" text="%key.buttonDeleteWord" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>

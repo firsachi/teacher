@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DilaogWordController">
+   <bottom>
+      <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
+               <FlowPane.margin>
+                  <Insets right="3.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#buttonCancelAction" text="%key.buttonCancel">
+               <FlowPane.margin>
+                  <Insets left="3.0" />
+               </FlowPane.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </BorderPane.margin>
+      </FlowPane>
+   </bottom>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="181.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="419.0" minWidth="10.0" prefWidth="419.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="%key.labelWord">
+               <GridPane.margin>
+                  <Insets right="6.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="%key.labelTranslate" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="6.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFiledWord" GridPane.columnIndex="1" />
+            <TextField fx:id="textFiledTranslate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+         <padding>
+            <Insets left="12.0" right="12.0" top="12.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+</BorderPane>

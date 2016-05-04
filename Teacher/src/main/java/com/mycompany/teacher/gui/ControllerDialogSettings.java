@@ -11,12 +11,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 /**
  *
@@ -43,19 +43,18 @@ public class ControllerDialogSettings implements Initializable{
     }
     
     @FXML
-    private void actionButtonOk(){
+    private void actionButtonOk(ActionEvent event){
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.setSettings((String)comboBoxLanguage.getValue(),
                 (Integer) comboBoxTimeout.getValue());
         SettingsApplication.setLanuege((String) comboBoxLanguage.getValue());
         SettingsApplication.setTimeout((Integer) comboBoxTimeout.getValue());
-        actionButtonCancel();
+        actionButtonCancel(event);
     }
 
     @FXML
-    private void actionButtonCancel(){
-        Stage stage = (Stage) buttonCancel.getScene().getWindow();
-        stage.close();
+    private void actionButtonCancel(ActionEvent event){
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
     
     @Override

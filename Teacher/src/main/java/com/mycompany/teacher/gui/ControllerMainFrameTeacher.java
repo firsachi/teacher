@@ -3,7 +3,6 @@ package com.mycompany.teacher.gui;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,6 +81,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonOkAction(){
+        System.out.println(textAreaTranslate.getText());
         Stage stage = (Stage) buttonOk.getScene().getWindow();
         stage.hide();
     }

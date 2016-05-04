@@ -21,7 +21,7 @@ public class Settings_dao {
     
     public void getSettings(){
         String sql = "SELECT * FROM settings";
-        try (PreparedStatement preparedStatement = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\firsov\\AppData\\Roaming\\teacher\\Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement preparedStatement = DriverManager.getConnection("jdbc:sqlite:"+SettingsApplication.getApplicationFolder()+"Teacher.db").prepareStatement(sql);) {
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
             SettingsApplication.setLanuege(resultSet.getString(1));
@@ -38,7 +38,7 @@ public class Settings_dao {
             pr.setString(1, language);
             pr.setInt(2, timeout);
             pr.setString(3, SettingsApplication.getLanuege());
-            System.out.println(pr.executeUpdate());
+            pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
