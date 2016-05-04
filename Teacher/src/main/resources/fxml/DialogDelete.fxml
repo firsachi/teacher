@@ -7,32 +7,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogDeleteController">
+   <center>
+      <Label fx:id="labellInfo" text="%key.labelInfo" BorderPane.alignment="CENTER" />
+   </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+      <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
-               <HBox.margin>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
+               <FlowPane.margin>
                   <Insets right="3.0" />
-               </HBox.margin>
+               </FlowPane.margin>
             </Button>
-            <Button fx:id="buttonCancel" mnemonicParsing="false" onAction="#buttonCancelAction" text="%key.buttonCancel">
-               <HBox.margin>
+            <Button cancelButton="true" mnemonicParsing="false" text="%key.buttonCancel">
+               <FlowPane.margin>
                   <Insets left="3.0" />
-               </HBox.margin>
+               </FlowPane.margin>
             </Button>
          </children>
-         <BorderPane.margin>
+         <padding>
             <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-         </BorderPane.margin>
-      </HBox>
+         </padding>
+      </FlowPane>
    </bottom>
-   <center>
-      <Label text="Label" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets left="12.0" right="12.0" top="12.0" />
-         </BorderPane.margin>
-      </Label>
-   </center>
 </BorderPane>

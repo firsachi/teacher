@@ -5,29 +5,41 @@
  */
 package com.mycompany.teacher.gui;
 
+import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
  *
- * @author firsachi
+ * @author firsov
  */
 public class DialogDeleteController implements Initializable {
-
+    
+    private String lesson;
+    private Word word;
+    @FXML
+    private Label labelInfo;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public void setLesson(String lesson) {
+        this.lesson = lesson;
+    }
     
     @FXML
-    private void buttonOkAction(ActionEvent event){
+    private void buttonOkAction(){
         
     }
+    
 }

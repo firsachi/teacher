@@ -7,7 +7,6 @@ package com.mycompany.teacher.dao;
 
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import com.mycompany.teacher.exsampl.Word;
-import com.mycompany.teacher.exsampl.Words;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,14 +22,14 @@ import javafx.collections.ObservableList;
  */
 public class Word_dao {
     
-    public ObservableList<Words> getAllWord(String lesson){
-        ObservableList<Words> lessonWords = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM word WHERE lesson_id=?";
+    public ObservableList<Word> getAllWord(String lesson){
+        ObservableList<Word> lessonWords = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM word WHERE lesson=?";
         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
             ps.setString(1, lesson);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
-                lessonWords.add((Words) initWord(resultSet));
+                lessonWords.add((Word) initWord(resultSet));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,14 +37,32 @@ public class Word_dao {
         return lessonWords;
     }
     
-    public void addWordb(Words word, String lesson){
-        String sql = "INSERT INTO word (lesson_id,word,translate) VALUES (?,?,?);";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
+    public void addWordb(Word word, String lesson){
+        String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
+        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
+                SettingsApplication.getApplicationFolder() +
+                "Teacher.db").prepareStatement(sql);) {
             ps.setString(1, lesson);
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
-            System.out.println(ps.executeUpdate());
+            ps.executeUpdate();
         } catch (SQLException ex) {
+            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void editWord(Word word, Word oldWord, String lesson){
+        String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
+         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
+                SettingsApplication.getApplicationFolder() +
+                "Teacher.db").prepareStatement(sql);) {
+            ps.setString(1, word.getWord());
+            ps.setString(2, word.getTranslate());
+            ps.setString(3, oldWord.getWord());
+            ps.setString(4, oldWord.getTranslate());
+            ps.setString(5, lesson);
+            ps.executeUpdate();
+         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

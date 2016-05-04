@@ -9,7 +9,6 @@ import com.mycompany.teacher.dao.Lesson_dao;
 import com.mycompany.teacher.dao.Word_dao;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import com.mycompany.teacher.exsampl.Word;
-import com.mycompany.teacher.exsampl.Words;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,11 +35,11 @@ import javafx.stage.Stage;
  */
 public class ControllerDialogLearn implements Initializable{
     
-    private DilaogWordController dilaogWordController;
+    private DilaogWordController dilaogController;
     private ObservableList<String> lessonList;
-    private Lesson_dao lesson_dao;
-    
-    private ObservableList<Words> wordList;
+    private FXMLLoader fxmlLoader;
+    private ObservableList<Word> wordList;
+    private Stage stage;
     
     @FXML
     private ComboBox comboBoxLesson;
@@ -58,13 +57,21 @@ public class ControllerDialogLearn implements Initializable{
     private void actionComboboxLesson(ActionEvent event){
         fillTable((String) comboBoxLesson.getValue());
     }
-
+    
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lesson_dao = new Lesson_dao();
+        Lesson_dao lesson_dao = new Lesson_dao();
         lessonList = lesson_dao.getAllLesson();
         comboBoxLesson.setItems(lessonList);
-        
+    }
+    
+    @FXML
+    private void buttonAddLessonAction(ActionEvent event){
+        Lesson_dao lesson = new Lesson_dao();
+        String nameLesson = lesson.addLesson(lessonList.size());
+        lessonList.add(nameLesson);
+        comboBoxLesson.setValue(nameLesson);
     }
     
     private void fillTable(String lesson){
@@ -77,40 +84,50 @@ public class ControllerDialogLearn implements Initializable{
     
     @FXML
     private void actionButtonAdd(ActionEvent event){
+        String pachLocale = "locales.LocaleAddWord";
+        String pachFXML = "/fxml/DialogWord.fxml";
+        configSceneAddEdit(pachFXML, pachLocale, event);
+        stage.showAndWait();
+        wordList.add(dilaogController.getWord());
+    }
+    
+    @FXML
+    private void buttonDeleteWordAction(ActionEvent event){
+        String pachLocale = "locales.LocaleDeleteWord";
+        String pachFXML = "/fxml/DialogDelete.fxml";
+        configSceneAddEdit(pachFXML, pachLocale, event);
+        stage.showAndWait();
+    }
+    
+    @FXML
+    private void buttonEditWordAction(ActionEvent event){
+        String pachLocale = "locales.LocaleEditWord";
+        String pachFXML = "/fxml/DialogWord.fxml";
+        configSceneAddEdit(pachFXML, pachLocale, event);
+        dilaogController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
+        stage.showAndWait();
+        wordList.set(tableViewWord.getSelectionModel().getSelectedIndex(), dilaogController.getWord());
+    }
+    
+    private void configSceneAddEdit(String pachFXML, String pachLocale, ActionEvent event ){
+        fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(pachFXML));
+        fxmlLoader.setResources(ResourceBundle.getBundle(pachLocale,
+                    SettingsApplication.getLocale()));     
+        Parent root;
+        dilaogController = null;
+        stage = new Stage();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/DialogWord.fxml"));
-            fxmlLoader.setResources(ResourceBundle.getBundle("locales.LocaleAddWord",
-                    SettingsApplication.getLocale()));
-           
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
+            root = fxmlLoader.load();
             stage.setScene(new Scene(root));
             stage.setTitle(fxmlLoader.getResources().getString("key.title"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            stage.show();
-            dilaogWordController = fxmlLoader.getController();
-            dilaogWordController.setLesson((String) comboBoxLesson.getValue());
-            wordList.add((Words) dilaogWordController.getWord());
+            dilaogController = fxmlLoader.getController();
+            //dilaogController.setLesson((String) comboBoxLesson.getValue());
         } catch (IOException ex) {
             Logger.getLogger(ControllerDialogLearn.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
-    private void buttonDeleteWordAction(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/DialogDelete.fxml"));
-            fxmlLoader.setResources(ResourceBundle.getBundle("locales.LocaleDeleteWord",
-                    SettingsApplication.getLocale()));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle(fxmlLoader.getResources().getString("key.title"));
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(ControllerDialogLearn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    
 }

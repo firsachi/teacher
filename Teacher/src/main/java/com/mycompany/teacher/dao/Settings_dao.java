@@ -26,7 +26,6 @@ public class Settings_dao {
             resultSet.next();
             SettingsApplication.setLanuege(resultSet.getString(1));
             SettingsApplication.setTimeout(resultSet.getInt(2));
-            System.out.println(SettingsApplication.getLanuege());
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
         }

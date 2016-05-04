@@ -54,7 +54,7 @@ public class ControllerDialogSettings implements Initializable{
 
     @FXML
     private void actionButtonCancel(ActionEvent event){
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        ((Node)(event.getSource())).getScene().getWindow();
     }
     
     @Override

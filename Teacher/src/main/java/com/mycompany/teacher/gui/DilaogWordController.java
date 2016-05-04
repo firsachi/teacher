@@ -31,23 +31,38 @@ public class DilaogWordController implements Initializable {
     
     private String lesson;
     private Word word;
+    private Word_dao word_dao;
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        word_dao = new Word_dao();
     }
 
     public void setLesson(String lesson) {
         this.lesson = lesson;
     }
+    
+    public void setWord(Word word){
+        this.word = word;
+        textFiledWord.setText(word.getWord());
+        textFiledTranslate.setText(word.getTranslate());
+    }
 
     @FXML
     private void buttonOkAction(ActionEvent event){
-        adddb();
-        buttonCancelAction(event);
+        if (null != word){
+            updateItemDetebace();
+            buttonCancelAction(event);
+        }else {
+            addItemDatabace();
+            buttonCancelAction(event);
+        }
     }
     
     @FXML
@@ -55,17 +70,28 @@ public class DilaogWordController implements Initializable {
         ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 
-    private void adddb() {
+    private void addItemDatabace() {
         word = new Word();
-        word.setTextWord(textFiledWord.getText());
-        word.setTextTarnslate(textFiledTranslate.getText());
-        Word_dao word_dao = new Word_dao();
+        fillWord();
         word_dao.addWordb(word, lesson);
     }
 
+    private void updateItemDetebace() {
+        Word old = new Word();
+        old.setTextWord(word.getWord());
+        old.setTextTarnslate(word.getTranslate());
+        fillWord();
+        word_dao.editWord(word, old, lesson);
+    }
+    
+    private void fillWord(){
+        word.setTextWord(textFiledWord.getText());
+        word.setTextTarnslate(textFiledTranslate.getText());
+    }
+    
     public Word getWord() {
         return word;
     }
-    
-    
+
+
 }

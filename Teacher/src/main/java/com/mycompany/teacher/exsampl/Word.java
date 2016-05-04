@@ -5,32 +5,38 @@
  */
 package com.mycompany.teacher.exsampl;
 
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  *
  * @author firsov
  */
-public class Word implements Words{
+public class Word {
     
-    private String textWord;
-    private String textTarnslate;
+    private final SimpleStringProperty word = new SimpleStringProperty("");
+    private final SimpleStringProperty tarnslate = new SimpleStringProperty("");
 
-    
     public void setTextWord(String textWord) {
-        this.textWord = textWord;
+        this.word.set(textWord);
     }
-    
+
     public void setTextTarnslate(String textTarnslate) {
-        this.textTarnslate = textTarnslate;
+        this.tarnslate.set(textTarnslate);
     }
 
-    @Override
-    public String getWord() {
-        return textWord;
+    public SimpleStringProperty getWordProperty() {
+        return word;
     }
 
-    @Override
-    public String getTranslate() {
-        return textTarnslate;
+    public SimpleStringProperty getTarnslateprProperty() {
+        return tarnslate;
     }
     
+    public String getWord(){
+        return word.get();
+    }
+    
+    public String getTranslate(){
+        return tarnslate.get();
+    }
 }
