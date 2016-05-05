@@ -35,7 +35,6 @@ import javafx.stage.Stage;
  */
 public class ControllerDialogLearn implements Initializable{
     
-    private DilaogWordController dilaogController;
     private ObservableList<String> lessonList;
     private FXMLLoader fxmlLoader;
     private ObservableList<Word> wordList;
@@ -87,8 +86,12 @@ public class ControllerDialogLearn implements Initializable{
         String pachLocale = "locales.LocaleAddWord";
         String pachFXML = "/fxml/DialogWord.fxml";
         configSceneAddEdit(pachFXML, pachLocale, event);
+        DialogWordController wordController = fxmlLoader.getController();
+        wordController.setLesson((String) comboBoxLesson.getValue());
         stage.showAndWait();
-        wordList.add(dilaogController.getWord());
+        if(wordController.getResultAction()){
+            wordList.add(wordController.getWord());
+        }
     }
     
     @FXML
@@ -104,9 +107,13 @@ public class ControllerDialogLearn implements Initializable{
         String pachLocale = "locales.LocaleEditWord";
         String pachFXML = "/fxml/DialogWord.fxml";
         configSceneAddEdit(pachFXML, pachLocale, event);
-        dilaogController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
+        DialogWordController wordController = fxmlLoader.getController();
+        wordController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
+        wordController.setLesson((String) comboBoxLesson.getValue());
         stage.showAndWait();
-        wordList.set(tableViewWord.getSelectionModel().getSelectedIndex(), dilaogController.getWord());
+        if (wordController.getResultAction()){
+            wordList.set(tableViewWord.getSelectionModel().getSelectedIndex(), wordController.getWord());
+        }
     }
     
     private void configSceneAddEdit(String pachFXML, String pachLocale, ActionEvent event ){
@@ -115,7 +122,6 @@ public class ControllerDialogLearn implements Initializable{
         fxmlLoader.setResources(ResourceBundle.getBundle(pachLocale,
                     SettingsApplication.getLocale()));     
         Parent root;
-        dilaogController = null;
         stage = new Stage();
         try {
             root = fxmlLoader.load();
@@ -123,8 +129,6 @@ public class ControllerDialogLearn implements Initializable{
             stage.setTitle(fxmlLoader.getResources().getString("key.title"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            //dilaogController = fxmlLoader.getController();
-            //dilaogController.setLesson((String) comboBoxLesson.getValue());
         } catch (IOException ex) {
             Logger.getLogger(ControllerDialogLearn.class.getName()).log(Level.SEVERE, null, ex);
         }

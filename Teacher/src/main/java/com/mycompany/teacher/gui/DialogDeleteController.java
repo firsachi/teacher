@@ -22,6 +22,7 @@ public class DialogDeleteController implements Initializable {
     
     private String lesson;
     private Word word;
+    private boolean resultAction;
 
     @FXML
     private Label labelInfo;
@@ -33,6 +34,7 @@ public class DialogDeleteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        resultAction = false;
     }
 
     public void setLesson(String lesson) {
@@ -47,6 +49,10 @@ public class DialogDeleteController implements Initializable {
     private void buttonOkAction(){
         Word_dao word_dao = new Word_dao();
         word_dao.deleteWord(word, lesson);
+    }
+
+    public boolean isResultAction() {
+        return resultAction;
     }
     
 }

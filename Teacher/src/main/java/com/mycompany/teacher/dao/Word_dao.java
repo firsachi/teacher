@@ -37,7 +37,8 @@ public class Word_dao {
         return lessonWords;
     }
     
-    public void addWordb(Word word, String lesson){
+    public boolean addWordb(Word word, String lesson){
+        
         String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
                 SettingsApplication.getApplicationFolder() +
@@ -46,12 +47,14 @@ public class Word_dao {
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
             ps.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
     
-    public void editWord(Word word, Word oldWord, String lesson){
+    public boolean editWord(Word word, Word oldWord, String lesson){
         String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
          try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
                 SettingsApplication.getApplicationFolder() +
@@ -62,9 +65,11 @@ public class Word_dao {
             ps.setString(4, oldWord.getTranslate());
             ps.setString(5, lesson);
             ps.executeUpdate();
+            return true;
          } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
+         return false;
     }
     
     private Word initWord(ResultSet resultSet){
@@ -79,7 +84,19 @@ public class Word_dao {
         return word;
     }
 
-    public void deleteWord(Word word, String lesson) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deleteWord(Word word, String lesson) {
+        String sql = "DELETE FROM word WHERE lesson=? AND word=? AND translate=?";
+        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" + 
+                    SettingsApplication.getApplicationFolder() + 
+                    "Teacher.db").prepareStatement(sql);) {
+            ps.setString(1, lesson);
+            ps.setString(2, word.getWord());
+            ps.setString(3, word.getTranslate());
+            ps.executeQuery();
+            return  true;
+        } catch (SQLException ex) {
+            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 }

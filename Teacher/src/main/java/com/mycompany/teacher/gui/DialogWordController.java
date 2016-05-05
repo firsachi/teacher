@@ -21,7 +21,7 @@ import javafx.scene.control.TextField;
  *
  * @author firsachi
  */
-public class DilaogWordController implements Initializable {
+public class DialogWordController implements Initializable {
 
     @FXML
     private TextField textFiledWord;
@@ -31,7 +31,8 @@ public class DilaogWordController implements Initializable {
     
     private String lesson;
     private Word word;
-    private final Word_dao word_dao = new Word_dao();
+    private Word_dao word_dao;
+    private boolean resultAction;
     
     /**
      * Initializes the controller class.
@@ -41,7 +42,8 @@ public class DilaogWordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       
+       word_dao = new Word_dao();
+       resultAction = false;
     }
 
     public void setLesson(String lesson) {
@@ -91,6 +93,10 @@ public class DilaogWordController implements Initializable {
     
     public Word getWord() {
         return word;
+    }
+
+    public boolean getResultAction() {
+        return resultAction;
     }
 
 
