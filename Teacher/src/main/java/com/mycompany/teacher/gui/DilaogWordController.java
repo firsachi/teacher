@@ -31,7 +31,7 @@ public class DilaogWordController implements Initializable {
     
     private String lesson;
     private Word word;
-    private Word_dao word_dao;
+    private final Word_dao word_dao = new Word_dao();
     
     /**
      * Initializes the controller class.
@@ -41,7 +41,7 @@ public class DilaogWordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        word_dao = new Word_dao();
+       
     }
 
     public void setLesson(String lesson) {

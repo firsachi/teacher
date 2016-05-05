@@ -78,4 +78,8 @@ public class Word_dao {
         
         return word;
     }
+
+    public void deleteWord(Word word, String lesson) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

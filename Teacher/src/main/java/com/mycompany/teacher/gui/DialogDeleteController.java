@@ -5,6 +5,7 @@
  */
 package com.mycompany.teacher.gui;
 
+import com.mycompany.teacher.dao.Word_dao;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,6 +22,7 @@ public class DialogDeleteController implements Initializable {
     
     private String lesson;
     private Word word;
+
     @FXML
     private Label labelInfo;
     /**
@@ -36,10 +38,15 @@ public class DialogDeleteController implements Initializable {
     public void setLesson(String lesson) {
         this.lesson = lesson;
     }
+
+    public void setWord(Word word) {
+        this.word = word;
+    }
     
     @FXML
     private void buttonOkAction(){
-        
+        Word_dao word_dao = new Word_dao();
+        word_dao.deleteWord(word, lesson);
     }
     
 }

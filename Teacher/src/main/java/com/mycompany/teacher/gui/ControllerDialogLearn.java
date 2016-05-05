@@ -123,7 +123,7 @@ public class ControllerDialogLearn implements Initializable{
             stage.setTitle(fxmlLoader.getResources().getString("key.title"));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            dilaogController = fxmlLoader.getController();
+            //dilaogController = fxmlLoader.getController();
             //dilaogController.setLesson((String) comboBoxLesson.getValue());
         } catch (IOException ex) {
             Logger.getLogger(ControllerDialogLearn.class.getName()).log(Level.SEVERE, null, ex);
