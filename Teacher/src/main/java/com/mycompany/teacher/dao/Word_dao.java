@@ -38,7 +38,7 @@ public class Word_dao {
     }
     
     public boolean addWordb(Word word, String lesson){
-        
+        boolean result = false;
         String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
                 SettingsApplication.getApplicationFolder() +
@@ -47,14 +47,15 @@ public class Word_dao {
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
             ps.executeUpdate();
-            return true;
+            result = true;
         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return result;
     }
     
     public boolean editWord(Word word, Word oldWord, String lesson){
+        boolean result = false;
         String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
          try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
                 SettingsApplication.getApplicationFolder() +
@@ -65,11 +66,11 @@ public class Word_dao {
             ps.setString(4, oldWord.getTranslate());
             ps.setString(5, lesson);
             ps.executeUpdate();
-            return true;
+            result = true;
          } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-         return false;
+        return result;
     }
     
     private Word initWord(ResultSet resultSet){
@@ -92,7 +93,7 @@ public class Word_dao {
             ps.setString(1, lesson);
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
-            ps.executeQuery();
+            ps.executeUpdate();
             return  true;
         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);

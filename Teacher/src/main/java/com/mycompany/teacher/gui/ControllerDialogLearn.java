@@ -99,7 +99,13 @@ public class ControllerDialogLearn implements Initializable{
         String pachLocale = "locales.LocaleDeleteWord";
         String pachFXML = "/fxml/DialogDelete.fxml";
         configSceneAddEdit(pachFXML, pachLocale, event);
+        DialogDeleteController deleteController = fxmlLoader.getController();
+        deleteController.setLesson((String) comboBoxLesson.getValue());
+        deleteController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
         stage.showAndWait();
+        if(deleteController.getResultAction()){
+            wordList.remove(tableViewWord.getSelectionModel().getSelectedIndex());
+        }
     }
     
     @FXML

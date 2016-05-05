@@ -13,8 +13,9 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -28,6 +29,9 @@ public class DialogWordController implements Initializable {
     
     @FXML
     private TextField textFiledTranslate;
+    
+    @FXML
+    private Button buttonCancel;
     
     private String lesson;
     private Word word;
@@ -60,22 +64,23 @@ public class DialogWordController implements Initializable {
     private void buttonOkAction(ActionEvent event){
         if (null != word){
             updateItemDetebace();
-            buttonCancelAction(event);
+            buttonCancelAction();
         }else {
             addItemDatabace();
-            buttonCancelAction(event);
+            buttonCancelAction();
         }
     }
     
     @FXML
-    private void buttonCancelAction(ActionEvent event){
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+    private void buttonCancelAction(){
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+        stage.close();
     }
 
     private void addItemDatabace() {
         word = new Word();
         fillWord();
-        word_dao.addWordb(word, lesson);
+        resultAction = word_dao.addWordb(word, lesson);
     }
 
     private void updateItemDetebace() {
@@ -83,7 +88,7 @@ public class DialogWordController implements Initializable {
         old.setTextWord(word.getWord());
         old.setTextTarnslate(word.getTranslate());
         fillWord();
-        word_dao.editWord(word, old, lesson);
+        resultAction = word_dao.editWord(word, old, lesson);
     }
     
     private void fillWord(){

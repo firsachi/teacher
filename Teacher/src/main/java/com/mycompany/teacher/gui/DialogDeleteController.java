@@ -11,7 +11,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -23,6 +25,9 @@ public class DialogDeleteController implements Initializable {
     private String lesson;
     private Word word;
     private boolean resultAction;
+    
+    @FXML
+    private Button buttonCancel;
 
     @FXML
     private Label labelInfo;
@@ -48,10 +53,17 @@ public class DialogDeleteController implements Initializable {
     @FXML
     private void buttonOkAction(){
         Word_dao word_dao = new Word_dao();
-        word_dao.deleteWord(word, lesson);
+        resultAction = word_dao.deleteWord(word, lesson);
+        buttonCancelAction();
+    }
+    
+    @FXML
+    private void buttonCancelAction(){
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+        stage.close();
     }
 
-    public boolean isResultAction() {
+    public boolean getResultAction() {
         return resultAction;
     }
     

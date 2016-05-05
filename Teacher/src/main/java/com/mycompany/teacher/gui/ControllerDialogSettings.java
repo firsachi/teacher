@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -49,12 +50,13 @@ public class ControllerDialogSettings implements Initializable{
                 (Integer) comboBoxTimeout.getValue());
         SettingsApplication.setLanuege((String) comboBoxLanguage.getValue());
         SettingsApplication.setTimeout((Integer) comboBoxTimeout.getValue());
-        actionButtonCancel(event);
+        actionButtonCancel();
     }
 
     @FXML
-    private void actionButtonCancel(ActionEvent event){
-        ((Node)(event.getSource())).getScene().getWindow();
+    private void actionButtonCancel(){
+        Stage stage = (Stage) buttonCancel.getScene().getWindow();
+        stage.close();
     }
     
     @Override
