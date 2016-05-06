@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -72,18 +73,6 @@ public class Word_dao {
         }
         return result;
     }
-    
-    private Word initWord(ResultSet resultSet){
-        Word word = new Word();
-        try {
-            word.setTextWord(resultSet.getString(2));
-            word.setTextTarnslate(resultSet.getString(3));
-        } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return word;
-    }
 
     public boolean deleteWord(Word word, String lesson) {
         String sql = "DELETE FROM word WHERE lesson=? AND word=? AND translate=?";
@@ -99,5 +88,33 @@ public class Word_dao {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    public ArrayList<Word> getLessonLast() {
+        ArrayList<Word> resultArray = new ArrayList<>();
+        String sql = "SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1);";
+        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" + 
+                    SettingsApplication.getApplicationFolder() + 
+                    "Teacher.db").prepareStatement(sql);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                resultArray.add(initWord(rs));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return resultArray;
+    }
+        
+    private Word initWord(ResultSet resultSet){
+        Word word = new Word();
+        try {
+            word.setTextWord(resultSet.getString(2));
+            word.setTextTarnslate(resultSet.getString(3));
+        } catch (SQLException ex) {
+            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return word;
     }
 }

@@ -92,8 +92,8 @@ public class DialogWordController implements Initializable {
     }
     
     private void fillWord(){
-        word.setTextWord(textFiledWord.getText());
-        word.setTextTarnslate(textFiledTranslate.getText());
+        word.setTextWord(textFiledWord.getText().trim());
+        word.setTextTarnslate(textFiledTranslate.getText().trim());
     }
     
     public Word getWord() {
@@ -104,5 +104,5 @@ public class DialogWordController implements Initializable {
         return resultAction;
     }
 
-
+    
 }

@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="139.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogWordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogWordController">
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
+            <Button mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
                <FlowPane.margin>
                   <Insets right="3.0" />
                </FlowPane.margin>
@@ -51,12 +51,19 @@
             <TextField fx:id="textFiledWord" GridPane.columnIndex="1" />
             <TextField fx:id="textFiledTranslate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
-         <padding>
-            <Insets left="12.0" right="12.0" top="12.0" />
-         </padding>
          <BorderPane.margin>
-            <Insets />
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
          </BorderPane.margin>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+         </padding>
       </GridPane>
    </center>
+   <top>
+      <Label fx:id="labelError" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="12.0" right="12.0" top="12.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
 </BorderPane>

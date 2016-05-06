@@ -1,6 +1,8 @@
 package com.mycompany.teacher.gui;
 
 import com.mycompany.teacher.exsampl.SettingsApplication;
+import com.mycompany.teacher.exsampl.Word;
+import com.mycompany.teacher.model.ModelMain;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,11 +16,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ControllerMainFrameTeacher implements Initializable {
+    
+    private ModelMain modelMain;
+    private Word word;
+    
+    @FXML
+    private Label labelWordLesson;
     
     @FXML
     private TextArea textAreaTranslate;
@@ -81,7 +90,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonOkAction(){
-        System.out.println(textAreaTranslate.getText());
+        textAreaTranslate.setEditable(true);
         Stage stage = (Stage) buttonOk.getScene().getWindow();
         stage.hide();
     }
@@ -89,5 +98,10 @@ public class ControllerMainFrameTeacher implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        modelMain = new ModelMain();
+        modelMain.fillModel();
+        word = modelMain.getElment();
+        labelWordLesson.setText(word.getWord());
+        labelWordLesson.getStyleClass().add("labelLessonWord");
     }    
 }

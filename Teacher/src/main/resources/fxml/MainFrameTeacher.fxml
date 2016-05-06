@@ -15,7 +15,11 @@
                <VBox.margin>
                   <Insets bottom="6.0" />
                </VBox.margin></Label>
-                <TextArea fx:id="textAreaWord" depthTest="DISABLE" disable="true" />
+            <Label fx:id="labelWordLesson" prefHeight="171.0" prefWidth="300.0">
+               <padding>
+                  <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+               </padding>
+            </Label>
                 <Label fx:id="textAreaTransleate" text="%key.labelTranslate">
                     <VBox.margin>
                         <Insets bottom="6.0" top="6.0" />

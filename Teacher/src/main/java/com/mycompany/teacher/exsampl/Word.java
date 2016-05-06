@@ -17,11 +17,11 @@ public class Word {
     private final SimpleStringProperty tarnslate = new SimpleStringProperty("");
 
     public void setTextWord(String textWord) {
-        this.word.set(textWord);
+        this.word.set(textWord.toLowerCase());
     }
 
     public void setTextTarnslate(String textTarnslate) {
-        this.tarnslate.set(textTarnslate);
+        this.tarnslate.set(textTarnslate.toLowerCase());
     }
 
     public SimpleStringProperty getWordProperty() {
