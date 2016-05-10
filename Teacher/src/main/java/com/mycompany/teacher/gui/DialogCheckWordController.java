@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 /**
  *
@@ -26,12 +27,17 @@ public class DialogCheckWordController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+    
+    public void setInfo(String text){
+        labelInfo.setText(text);
     }
     
     @FXML
     private void buttomOkAction(){
-        
+        Stage stage = (Stage) buttonOk.getScene().getWindow();
+        stage.close();
     }
     
 }
