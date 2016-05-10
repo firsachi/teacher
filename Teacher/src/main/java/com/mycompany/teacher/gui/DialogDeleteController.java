@@ -21,8 +21,7 @@ import javafx.stage.Stage;
  * @author firsov
  */
 public class DialogDeleteController implements Initializable {
-    
-    private String lesson;
+
     private Word word;
     private boolean resultAction;
     
@@ -42,10 +41,6 @@ public class DialogDeleteController implements Initializable {
         resultAction = false;
     }
 
-    public void setLesson(String lesson) {
-        this.lesson = lesson;
-    }
-
     public void setWord(Word word) {
         this.word = word;
     }
@@ -53,7 +48,7 @@ public class DialogDeleteController implements Initializable {
     @FXML
     private void buttonOkAction(){
         Word_dao word_dao = new Word_dao();
-        resultAction = word_dao.deleteWord(word, lesson);
+        resultAction = word_dao.deleteWord(word);
         buttonCancelAction();
     }
     

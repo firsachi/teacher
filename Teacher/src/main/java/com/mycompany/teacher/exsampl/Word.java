@@ -15,6 +15,7 @@ public class Word {
     
     private final SimpleStringProperty word = new SimpleStringProperty("");
     private final SimpleStringProperty tarnslate = new SimpleStringProperty("");
+    private String lesson;
 
     public void setTextWord(String textWord) {
         this.word.set(textWord.toLowerCase());
@@ -22,6 +23,10 @@ public class Word {
 
     public void setTextTarnslate(String textTarnslate) {
         this.tarnslate.set(textTarnslate.toLowerCase());
+    }
+
+    public void setLesson(String lesson) {
+        this.lesson = lesson;
     }
 
     public SimpleStringProperty getWordProperty() {
@@ -39,4 +44,9 @@ public class Word {
     public String getTranslate(){
         return tarnslate.get();
     }
+
+    public String getLesson() {
+        return lesson;
+    }
+    
 }

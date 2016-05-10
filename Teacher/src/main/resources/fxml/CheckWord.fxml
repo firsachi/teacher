@@ -7,17 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogCheckWordController">
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Button">
-               <FlowPane.margin>
-                  <Insets right="3.0" />
-               </FlowPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" text="Button">
+            <Button fx:id="buutonOk" mnemonicParsing="false" onAction="#buttomOkAction" text="%key.buttonOk">
                <FlowPane.margin>
                   <Insets left="3.0" />
                </FlowPane.margin>
@@ -29,7 +23,7 @@
       </FlowPane>
    </bottom>
    <center>
-      <Label text="Label" BorderPane.alignment="CENTER">
+      <Label fx:id="labelInfo" text="Label" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="12.0" right="12.0" top="12.0" />
          </BorderPane.margin>

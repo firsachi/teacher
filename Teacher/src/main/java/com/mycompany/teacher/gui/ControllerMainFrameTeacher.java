@@ -90,9 +90,9 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonOkAction(){
-        textAreaTranslate.setEditable(true);
         Stage stage = (Stage) buttonOk.getScene().getWindow();
         stage.hide();
+        chekInputTranslate(textAreaTranslate.getText().trim().toLowerCase());
     }
     
     @Override
@@ -103,5 +103,19 @@ public class ControllerMainFrameTeacher implements Initializable {
         word = modelMain.getElment();
         labelWordLesson.setText(word.getWord());
         labelWordLesson.getStyleClass().add("labelLessonWord");
-    }    
+    } 
+
+    private void chekInputTranslate(String text) {
+        try {
+            Thread.sleep(SettingsApplication.getTimeout() *60000);
+            word = modelMain.getElment();
+            labelWordLesson.setText(word.getWord());
+            Stage stage = (Stage) buttonOk.getScene().getWindow();
+            stage.show();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }

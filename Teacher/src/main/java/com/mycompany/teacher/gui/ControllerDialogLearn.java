@@ -100,7 +100,6 @@ public class ControllerDialogLearn implements Initializable{
         String pachFXML = "/fxml/DialogDelete.fxml";
         configSceneAddEdit(pachFXML, pachLocale, event);
         DialogDeleteController deleteController = fxmlLoader.getController();
-        deleteController.setLesson((String) comboBoxLesson.getValue());
         deleteController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
         stage.showAndWait();
         if(deleteController.getResultAction()){
@@ -115,7 +114,6 @@ public class ControllerDialogLearn implements Initializable{
         configSceneAddEdit(pachFXML, pachLocale, event);
         DialogWordController wordController = fxmlLoader.getController();
         wordController.setWord((Word) tableViewWord.getSelectionModel().getSelectedItem());
-        wordController.setLesson((String) comboBoxLesson.getValue());
         stage.showAndWait();
         if (wordController.getResultAction()){
             wordList.set(tableViewWord.getSelectionModel().getSelectedIndex(), wordController.getWord());

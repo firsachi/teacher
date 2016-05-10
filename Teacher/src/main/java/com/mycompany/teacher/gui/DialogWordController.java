@@ -80,7 +80,7 @@ public class DialogWordController implements Initializable {
     private void addItemDatabace() {
         word = new Word();
         fillWord();
-        resultAction = word_dao.addWordb(word, lesson);
+        resultAction = word_dao.addWordb(word);
     }
 
     private void updateItemDetebace() {
@@ -88,7 +88,7 @@ public class DialogWordController implements Initializable {
         old.setTextWord(word.getWord());
         old.setTextTarnslate(word.getTranslate());
         fillWord();
-        resultAction = word_dao.editWord(word, old, lesson);
+        resultAction = word_dao.editWord(word, old);
     }
     
     private void fillWord(){
@@ -103,6 +103,5 @@ public class DialogWordController implements Initializable {
     public boolean getResultAction() {
         return resultAction;
     }
-
     
 }

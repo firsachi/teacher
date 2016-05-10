@@ -18,6 +18,7 @@ import java.util.Random;
 public class ModelMain {
     
     private ArrayList<Word> arrayWord;
+    private int index;
     
     public void fillModel(){
         Word_dao word_dao = new Word_dao();
@@ -25,7 +26,13 @@ public class ModelMain {
     }
     
     public Word getElment(){
-        Random random = new Random();
-        return arrayWord.get(random.nextInt(arrayWord.size()));
+        if (0 < arrayWord.size()){
+            Random random = new Random();
+            index = random.nextInt(arrayWord.size());
+        return arrayWord.get(index);
+        }else{
+            return  new Word();
+        }
+        
     }
 }
