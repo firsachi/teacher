@@ -66,7 +66,7 @@ public class ControllerDialogLearn implements Initializable{
     }
     
     @FXML
-    private void buttonAddLessonAction(ActionEvent event){
+    private void buttonAddLessonAction(){
         Lesson_dao lesson = new Lesson_dao();
         String nameLesson = lesson.addLesson(lessonList.size());
         lessonList.add(nameLesson);

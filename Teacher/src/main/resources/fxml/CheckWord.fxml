@@ -11,7 +11,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buutonOk" mnemonicParsing="false" onAction="#buttomOkAction" text="%key.buttonOk">
+            <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttomOkAction" text="%key.buttonOk">
                <FlowPane.margin>
                   <Insets left="3.0" />
                </FlowPane.margin>

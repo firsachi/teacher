@@ -13,14 +13,19 @@ import programmfolder.FolederProgramm;
  *
  * @author firsov
  */
+
 public class SettingsApplication {
-    private static String userApplicationFolder;
+    
+    private final static String userApplicationFolder;
+    static  {
+        FolederProgramm folder = new FolederProgramm();
+        userApplicationFolder = folder.pachProgamm();
+    }
+    
     private static Locale laocaleApplicatopn;
     private static int timeout;
     
     static {
-        userApplicationFolder = FolederProgramm.pachProgamm();
-        System.out.println(userApplicationFolder);
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.getSettings();
     }

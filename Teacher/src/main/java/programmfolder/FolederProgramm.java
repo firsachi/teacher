@@ -11,10 +11,10 @@ package programmfolder;
  */
 public class FolederProgramm {
     
-    private static PachProgram pachProgramm;
-    private static final String nameOs = "windows";
+    private PachProgram pachProgramm;
+    private final String nameOs = "windows";
     
-    public static String pachProgamm(){
+    public String pachProgamm(){
         String os = System.getProperty("os.name").split(" ")[0].toLowerCase();
         if (os.equals(nameOs)){
             pachProgramm = new WindowsPach();

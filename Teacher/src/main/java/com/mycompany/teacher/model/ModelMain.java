@@ -7,7 +7,6 @@ package com.mycompany.teacher.model;
 
 import com.mycompany.teacher.dao.Word_dao;
 import com.mycompany.teacher.exsampl.Word;
-import java.awt.font.NumericShaper;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,6 +32,9 @@ public class ModelMain {
         }else{
             return  new Word();
         }
-        
+    }
+    
+    public void deleteItem(){
+        arrayWord.remove(index);
     }
 }

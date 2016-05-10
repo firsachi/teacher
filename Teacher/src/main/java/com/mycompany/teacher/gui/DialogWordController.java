@@ -79,6 +79,7 @@ public class DialogWordController implements Initializable {
 
     private void addItemDatabace() {
         word = new Word();
+        word.setLesson(lesson);
         fillWord();
         resultAction = word_dao.addWordb(word);
     }

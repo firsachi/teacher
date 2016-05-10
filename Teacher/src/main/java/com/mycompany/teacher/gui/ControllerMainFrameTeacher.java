@@ -97,7 +97,6 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         modelMain = new ModelMain();
         modelMain.fillModel();
         word = modelMain.getElment();
@@ -106,39 +105,38 @@ public class ControllerMainFrameTeacher implements Initializable {
     } 
 
     private void chekInputTranslate(String text, ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/fxml/CheckWord.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("locales.LocaleCheckWord", 
+            SettingsApplication.getLocale()));
+        Stage stage = new Stage();
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/CheckWord.fxml"));
-            fxmlLoader.setResources(ResourceBundle.getBundle("locales.LocaleCheckWord", 
-                SettingsApplication.getLocale()));
-            Stage stage = new Stage();
             Parent root = fxmlLoader.load();
             stage.setScene(new Scene(root));
-            stage.setTitle(fxmlLoader.getResources().getString("key.title"));
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            DialogCheckWordController checkController = fxmlLoader.getController();
+        } catch (IOException ex) {
+            Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        stage.setTitle(fxmlLoader.getResources().getString("key.title"));
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+        DialogCheckWordController checkController = fxmlLoader.getController();
         if (text.equals(word.getTranslate())){
             checkController.setInfo(fxmlLoader.getResources().getString("key.labelMeassageGood"));
+            modelMain.deleteItem();
         }else{
             checkController.setInfo(fxmlLoader.getResources().getString("key.laabelMeassageBead"));
         }
         stage.showAndWait();
-        } catch (IOException ex) {
-            Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         try {
             Thread.sleep(SettingsApplication.getTimeout() *60000);
             word = modelMain.getElment();
             labelWordLesson.setText(word.getWord());
             textAreaTranslate.setText("");
-            Stage stage = (Stage) buttonOk.getScene().getWindow();
+            stage = (Stage) buttonOk.getScene().getWindow();
             stage.show();
         } catch (InterruptedException ex) {
             Logger.getLogger(ControllerMainFrameTeacher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     
 }
