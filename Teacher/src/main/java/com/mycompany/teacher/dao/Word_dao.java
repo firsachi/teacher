@@ -26,7 +26,7 @@ public class Word_dao {
     public ObservableList<Word> getAllWord(String lesson){
         ObservableList<Word> lessonWords = FXCollections.observableArrayList();
         String sql = "SELECT * FROM word WHERE lesson=?";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, lesson);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
@@ -41,9 +41,7 @@ public class Word_dao {
     public boolean addWordb(Word word){
         boolean result = false;
         String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
-                SettingsApplication.getApplicationFolder() +
-                "Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, word.getLesson());
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
@@ -58,9 +56,7 @@ public class Word_dao {
     public boolean editWord(Word word, Word oldWord){
         boolean result = false;
         String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
-         try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
-                SettingsApplication.getApplicationFolder() +
-                "Teacher.db").prepareStatement(sql);) {
+         try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, word.getWord());
             ps.setString(2, word.getTranslate());
             ps.setString(3, oldWord.getWord());
@@ -76,9 +72,7 @@ public class Word_dao {
 
     public boolean deleteWord(Word word) {
         String sql = "DELETE FROM word WHERE lesson=? AND word=? AND translate=?";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" + 
-                    SettingsApplication.getApplicationFolder() + 
-                    "Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, word.getLesson());
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
@@ -93,9 +87,7 @@ public class Word_dao {
     public ArrayList<Word> getLessonLast() {
         ArrayList<Word> resultArray = new ArrayList<>();
         String sql = "SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1)";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" + 
-                    SettingsApplication.getApplicationFolder() + 
-                    "Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 resultArray.add(initWord(rs));

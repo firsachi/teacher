@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import programmfolder.FillTablesDatabese;
 
 public class ControllerMainFrameTeacher implements Initializable {
     

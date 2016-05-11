@@ -21,11 +21,15 @@ public class Settings_dao {
     
     public void getSettings(){
         String sql = "SELECT * FROM settings";
-        try (PreparedStatement preparedStatement = DriverManager.getConnection("jdbc:sqlite:"+SettingsApplication.getApplicationFolder()+"Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement preparedStatement = SettingsApplication.getConnect().prepareStatement(sql);) {
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            SettingsApplication.setLanuege(resultSet.getString(1));
-            SettingsApplication.setTimeout(resultSet.getInt(2));
+            if (resultSet.next()){
+                SettingsApplication.setLanuege(resultSet.getString(1));
+                SettingsApplication.setTimeout(resultSet.getInt(2));
+            }else{
+                SettingsApplication.setLanuege("ukr");
+                SettingsApplication.setTimeout(5);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -33,7 +37,7 @@ public class Settings_dao {
     
     public void setSettings(String language, int timeout){
         String sql="UPDATE settings SET language=?, timeout=? WHERE language=?";
-        try (PreparedStatement pr = DriverManager.getConnection("jdbc:sqlite:"+ SettingsApplication.getApplicationFolder() +"Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement pr = SettingsApplication.getConnect().prepareStatement(sql);) {
             pr.setString(1, language);
             pr.setInt(2, timeout);
             pr.setString(3, SettingsApplication.getLanuege());

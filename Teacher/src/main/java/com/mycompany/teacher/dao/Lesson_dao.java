@@ -24,9 +24,7 @@ public class Lesson_dao {
     public ObservableList<String> getAllLesson(){
         String sql = "SELECT * FROM lesson";
         ObservableList<String> lessonList = FXCollections.observableArrayList();
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:"+ 
-                SettingsApplication.getApplicationFolder() +
-                "Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
                 lessonList.add(resultSet.getString(1));
@@ -40,9 +38,7 @@ public class Lesson_dao {
     public String addLesson(int number){
         String sql = "INSERT INTO lesson (id) VALUES (?);";
         String result = number + 1 + "lesson";
-        try (PreparedStatement ps = DriverManager.getConnection("jdbc:sqlite:" +
-                SettingsApplication.getApplicationFolder() + 
-                "Teacher.db").prepareStatement(sql);) {
+        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, result);
             ps.executeUpdate();
             return result;

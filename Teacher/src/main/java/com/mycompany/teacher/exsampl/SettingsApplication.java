@@ -6,7 +6,11 @@
 package com.mycompany.teacher.exsampl;
 
 import com.mycompany.teacher.dao.Settings_dao;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Locale;
+import programmfolder.FillTablesDatabese;
 import programmfolder.FolederProgramm;
 
 /**
@@ -16,10 +20,15 @@ import programmfolder.FolederProgramm;
 
 public class SettingsApplication {
     
-    private final static String userApplicationFolder;
+    private final static String DATABSE_APPLICATION_NAME = "Teacher.db";
+    
+    public final static String USER_APLICATION_FOLDER;
+    
     static  {
         FolederProgramm folder = new FolederProgramm();
-        userApplicationFolder = folder.pachProgamm();
+        USER_APLICATION_FOLDER = folder.pachProgamm();
+        FillTablesDatabese createTables = new FillTablesDatabese();
+        createTables.checkTable();
     }
     
     private static Locale laocaleApplicatopn;
@@ -29,6 +38,9 @@ public class SettingsApplication {
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.getSettings();
     }
+
+    private SettingsApplication() {
+    }
      
     public static void setLanuege(String lanuege) {
         SettingsApplication.laocaleApplicatopn = new Locale(lanuege);
@@ -36,10 +48,6 @@ public class SettingsApplication {
 
     public static void setTimeout(Integer timeout) {
         SettingsApplication.timeout = timeout;
-    }
-
-    public static String getApplicationFolder() {
-        return userApplicationFolder;
     }
     
     public static int getTimeout() {
@@ -52,5 +60,9 @@ public class SettingsApplication {
     
     public  static Locale getLocale(){
         return laocaleApplicatopn;
+    }
+    
+    public static Connection getConnect() throws SQLException{
+        return DriverManager.getConnection("jdbc:sqlite:"+ USER_APLICATION_FOLDER +"Teacher.db");
     }
 }

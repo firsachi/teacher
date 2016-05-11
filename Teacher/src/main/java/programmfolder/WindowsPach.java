@@ -5,15 +5,22 @@
  */
 package programmfolder;
 
+import java.io.File;
+
 /**
  *
  * @author firsov
  */
 public class WindowsPach implements PachProgram{
+    
+    private final String folderApplication = "\\Teacher\\";
 
     @Override
     public String getPachDetabase() {
-        return System.getenv("APPDATA") + "\\Teacher\\";
+        String path = System.getenv("APPDATA") + folderApplication;
+        File pathFile = new File(path);
+        pathFile.mkdirs();
+        return path;
     }
     
 }

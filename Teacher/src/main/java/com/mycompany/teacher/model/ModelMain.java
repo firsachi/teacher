@@ -25,11 +25,15 @@ public class ModelMain {
     }
     
     public Word getElment(){
-        if (0 < arrayWord.size()){
+        if (1 == arrayWord.size()){
+            Word word = arrayWord.get(0);
+            fillModel();
+            return word;
+        }else if(0 < arrayWord.size()){
             Random random = new Random();
             index = random.nextInt(arrayWord.size());
-        return arrayWord.get(index);
-        }else{
+            return arrayWord.get(index);
+        }else {
             return  new Word();
         }
     }
