@@ -27,7 +27,7 @@ public class DialogCheckWordController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+       // buttonOk.setMnemonicParsing(true);
     }
     
     public void setInfo(String text){

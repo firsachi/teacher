@@ -6,7 +6,6 @@
 package com.mycompany.teacher.dao;
 
 import com.mycompany.teacher.exsampl.SettingsApplication;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,9 +25,6 @@ public class Settings_dao {
             if (resultSet.next()){
                 SettingsApplication.setLanuege(resultSet.getString(1));
                 SettingsApplication.setTimeout(resultSet.getInt(2));
-            }else{
-                SettingsApplication.setLanuege("ukr");
-                SettingsApplication.setTimeout(5);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);

@@ -52,7 +52,7 @@
                   </Label>
                   <ComboBox fx:id="comboBoxTimeout" prefHeight="25.0" prefWidth="202.0" />
                </children>
-            </HBox>
+            </HBox>        
          </children>
          <BorderPane.margin>
             <Insets left="12.0" right="12.0" top="12.0" />

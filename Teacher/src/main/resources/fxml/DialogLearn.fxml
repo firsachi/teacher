@@ -37,7 +37,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="buttonAddWord" mnemonicParsing="false" onAction="#actionButtonAdd" prefHeight="25.0" prefWidth="125.0" text="%key.buttonAddWord">
+                  <Button fx:id="buttonAddWord" mnemonicParsing="false" onAction="#buttonAddWordAction" prefHeight="25.0" prefWidth="125.0" text="%key.buttonAddWord">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -58,6 +58,15 @@
                 <TableColumn fx:id="tableColumnWord" prefWidth="189.0" text="%key.tableColumnWord" />
                 <TableColumn fx:id="tableColumnTranslate" prefWidth="188.0" text="%key.tableColumnTranslate" />
               </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#menuItemAdd" text="%key.buttonAddWord" />
+                        <MenuItem mnemonicParsing="false" onAction="#menuIItemDelete" text="%key.buttonDeleteWord" />
+                        <MenuItem mnemonicParsing="false" onAction="#menuItemEdit" text="%key.buttonEditWord" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
          </children>
       </VBox>

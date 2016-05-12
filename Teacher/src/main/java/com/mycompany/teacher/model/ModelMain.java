@@ -18,10 +18,16 @@ public class ModelMain {
     
     private ArrayList<Word> arrayWord;
     private int index;
+    private int counter = 0;
     
     public void fillModel(){
+        counter++;
         Word_dao word_dao = new Word_dao();
-        arrayWord = word_dao.getLessonLast();
+        if ((counter & 1) == 0){
+            arrayWord = word_dao.randomLesson();
+        }else{
+            arrayWord = word_dao.getLessonLast();
+        }
     }
     
     public Word getElment(){

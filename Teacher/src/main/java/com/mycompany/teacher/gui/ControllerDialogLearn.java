@@ -82,16 +82,8 @@ public class ControllerDialogLearn implements Initializable{
     }
     
     @FXML
-    private void actionButtonAdd(ActionEvent event){
-        String pachLocale = "locales.LocaleAddWord";
-        String pachFXML = "/fxml/DialogWord.fxml";
-        configSceneAddEdit(pachFXML, pachLocale, event);
-        DialogWordController wordController = fxmlLoader.getController();
-        wordController.setLesson((String) comboBoxLesson.getValue());
-        stage.showAndWait();
-        if(wordController.getResultAction()){
-            wordList.add(wordController.getWord());
-        }
+    private void buttonAddWordAction(ActionEvent event){
+        addAction(event);
     }
     
     @FXML
@@ -132,10 +124,37 @@ public class ControllerDialogLearn implements Initializable{
             stage.setScene(new Scene(root));
             stage.setTitle(fxmlLoader.getResources().getString("key.title"));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+            //stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+            stage.initOwner(comboBoxLesson.getScene().getWindow());
         } catch (IOException ex) {
             Logger.getLogger(ControllerDialogLearn.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+    @FXML
+    private void menuItemAdd(ActionEvent event){
+        addAction(event);
+    }
+    
+    @FXML
+    private void menuIItemDelete(ActionEvent event){
+        buttonDeleteWordAction(event);
+    }
+    
+    @FXML
+    private void menuItemEdit(ActionEvent event){
+        buttonEditWordAction(event);
+    }
+    
+    private void addAction(ActionEvent event){
+        String pachLocale = "locales.LocaleAddWord";
+        String pachFXML = "/fxml/DialogWord.fxml";
+        configSceneAddEdit(pachFXML, pachLocale, event);
+        DialogWordController wordController = fxmlLoader.getController();
+        wordController.setLesson((String) comboBoxLesson.getValue());
+        stage.showAndWait();
+        if(wordController.getResultAction()){
+            wordList.add(wordController.getWord());
+        }
+    }
 }

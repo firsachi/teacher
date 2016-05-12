@@ -7,7 +7,6 @@ package com.mycompany.teacher.dao;
 
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import com.mycompany.teacher.exsampl.Word;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,8 +84,17 @@ public class Word_dao {
     }
 
     public ArrayList<Word> getLessonLast() {
-        ArrayList<Word> resultArray = new ArrayList<>();
         String sql = "SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1)";
+        return resultSelect(sql);
+    }
+    
+    public ArrayList<Word> randomLesson(){
+        String sql = "SELECT * FROM word WHERE lesson = (SELECT * FROM lesson ORDER BY RANDOM() LIMIT 1)";
+        return resultSelect(sql);
+    }
+        
+    private ArrayList<Word> resultSelect(String sql) {
+        ArrayList<Word> resultArray = new ArrayList<>();
         try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -97,7 +105,7 @@ public class Word_dao {
         }
         return resultArray;
     }
-        
+    
     private Word initWord(ResultSet resultSet){
         Word word = new Word();
         try {
@@ -107,7 +115,7 @@ public class Word_dao {
         } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return word;
     }
+
 }
