@@ -7,6 +7,7 @@ package com.mycompany.teacher.gui;
  */
 
 import com.mycompany.teacher.dao.Word_dao;
+import com.mycompany.teacher.exsampl.CheckString;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,7 +25,10 @@ import javafx.stage.Stage;
  * @author firsachi
  */
 public class DialogWordController implements Initializable {
-
+    
+    @FXML
+    private Label labelError;
+    
     @FXML
     private TextField textFiledWord;
     
@@ -59,7 +64,17 @@ public class DialogWordController implements Initializable {
         textFiledWord.setText(word.getWord());
         textFiledTranslate.setText(word.getTranslate());
     }
-
+    
+    @FXML
+    private void textFiledWordAction(){
+        CheckString checkString = new CheckString();
+        if(checkString.checkValue(textFiledWord.getText())){
+            labelError.setText("fjlsdjflksjdfl");
+        }else{
+            labelError.setText("");
+        }
+    }
+    
     @FXML
     private void buttonOkAction(ActionEvent event){
         if (null != word){

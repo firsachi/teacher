@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogWordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="168.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.teacher.gui.DialogWordController">
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
@@ -30,15 +30,15 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="181.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="419.0" minWidth="10.0" prefWidth="419.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="116.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="419.0" minWidth="10.0" prefWidth="272.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="%key.labelWord">
+            <Label prefHeight="17.0" prefWidth="92.0" text="%key.labelWord">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>
@@ -48,7 +48,7 @@
                   <Insets right="6.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="textFiledWord" GridPane.columnIndex="1" />
+            <TextField fx:id="textFiledWord" onKeyPressed="#textFiledWordAction" GridPane.columnIndex="1" />
             <TextField fx:id="textFiledTranslate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>
