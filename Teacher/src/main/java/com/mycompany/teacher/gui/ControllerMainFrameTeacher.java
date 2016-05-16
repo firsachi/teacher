@@ -20,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import programmfolder.FillTablesDatabese;
 
 public class ControllerMainFrameTeacher implements Initializable {
     
@@ -46,8 +45,8 @@ public class ControllerMainFrameTeacher implements Initializable {
     private Button buttonOk;
     
     @FXML
-    private void actionButtonExit(){
-        System.exit(0);
+    private void buttonStartAction(){
+        start();
     }
     
     @FXML
@@ -98,11 +97,15 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       start();
+    } 
+    
+    private void start(){
         modelMain = new ModelMain();
         modelMain.fillModel();
         fill();
         labelWordLesson.getStyleClass().add("labelLessonWord");
-    } 
+    }
 
     private void chekInputTranslate(String text, ActionEvent event) {
         messageDialog(text, event);

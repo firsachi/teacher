@@ -23,7 +23,7 @@ public class MainApp extends Application{
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        primaryStage.setTitle(fXMLLoader.getResources().getString("main.frame"));
+        primaryStage.setTitle(fXMLLoader.getResources().getString("key.title"));
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
         primaryStage.show();

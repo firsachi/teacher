@@ -5,6 +5,7 @@
  */
 package com.mycompany.teacher.exsampl;
 
+import java.util.Objects;
 import javafx.beans.property.SimpleStringProperty;
 
 /**
@@ -47,6 +48,37 @@ public class Word {
 
     public String getLesson() {
         return lesson;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.lesson);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Word other = (Word) obj;
+        if (!Objects.equals(this.lesson, other.lesson)) {
+            return false;
+        }
+        if (!Objects.equals(this.word, other.word)) {
+            return false;
+        }
+        if (!Objects.equals(this.tarnslate, other.tarnslate)) {
+            return false;
+        }
+        return true;
     }
     
 }

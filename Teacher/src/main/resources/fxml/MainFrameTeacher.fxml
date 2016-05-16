@@ -40,35 +40,12 @@
         </Button>
     </bottom>
    <top>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Button fx:id="buttonExit" mnemonicParsing="false" onAction="#actionButtonExit" prefHeight="25.0" prefWidth="103.0" text="%key.buttonExit">
-               <GridPane.margin>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionButtonLearn" prefHeight="25.0" prefWidth="102.0" text="%key.buttonLearn" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="%key.buttonSettings" GridPane.columnIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </GridPane.margin>
-            </Button>
-         </children>
-         <padding>
-            <Insets left="6.0" right="6.0" top="6.0" />
-         </padding>
-      </GridPane>
+      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <Button mnemonicParsing="false" onAction="#buttonStartAction" prefHeight="25.0" prefWidth="103.0" text="%key.buttonStart" />
+            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionButtonLearn" prefHeight="25.0" prefWidth="102.0" text="%key.buttonLearn" />
+            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="%key.buttonSettings" />
+         </items>
+      </ToolBar>
    </top>
 </BorderPane>

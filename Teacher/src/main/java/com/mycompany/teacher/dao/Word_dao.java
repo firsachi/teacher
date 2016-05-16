@@ -53,7 +53,9 @@ public class Word_dao {
     }
     
     public boolean editWord(Word word, Word oldWord){
-        boolean result = false;
+        if(oldWord.equals(word)){
+            return true;
+        }
         String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
          try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
             ps.setString(1, word.getWord());
@@ -62,11 +64,11 @@ public class Word_dao {
             ps.setString(4, oldWord.getTranslate());
             ps.setString(5, word.getLesson());
             ps.executeUpdate();
-            result = true;
+            return true;
          } catch (SQLException ex) {
             Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return result;
+        return false;
     }
 
     public boolean deleteWord(Word word) {
