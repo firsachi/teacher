@@ -86,7 +86,7 @@ public class Word_dao {
     }
 
     public ArrayList<Word> getLessonLast() {
-        String sql = "SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1)";
+        String sql ="SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1)";
         return resultSelect(sql);
     }
     

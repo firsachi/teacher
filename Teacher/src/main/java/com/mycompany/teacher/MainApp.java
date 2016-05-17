@@ -1,6 +1,5 @@
 package com.mycompany.teacher;
 
-import com.mycompany.teacher.exsampl.Model;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.util.ResourceBundle;
 import javafx.application.Application;
@@ -38,7 +37,6 @@ public class MainApp extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Model model = new Model(); 
         launch(args);
     }
 }

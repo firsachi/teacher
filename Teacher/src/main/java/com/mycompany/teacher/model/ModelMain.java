@@ -47,4 +47,8 @@ public class ModelMain {
     public void deleteItem(){
         arrayWord.remove(index);
     }
+    
+    public void clear(){
+        arrayWord.clear();
+    }
 }

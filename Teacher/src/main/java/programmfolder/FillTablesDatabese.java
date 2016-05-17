@@ -38,7 +38,8 @@ public class FillTablesDatabese {
  
     private void createTableSettings(){
         String sql ="CREATE TABLE settings (language varcyar(3) NOT NULL," +
-                " timeout integer(2) NOT NULL)";
+                " timeout integer(2) NOT NULL," +
+                " master varcyar(10) NOT NULL)";
         add(sql);
     }
     

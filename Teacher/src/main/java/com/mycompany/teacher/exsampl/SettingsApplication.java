@@ -33,6 +33,7 @@ public class SettingsApplication {
     
     private static Locale laocaleApplicatopn;
     private static int timeout;
+    private static String masterValue;
     
     static {
         Settings_dao settings_dao = new Settings_dao();
@@ -49,6 +50,10 @@ public class SettingsApplication {
     public static void setTimeout(Integer timeout) {
         SettingsApplication.timeout = timeout;
     }
+
+    public static void setMasterValue(String masterValue) {
+        SettingsApplication.masterValue = masterValue;
+    }
     
     public static int getTimeout() {
         return timeout;
@@ -61,6 +66,11 @@ public class SettingsApplication {
     public  static Locale getLocale(){
         return laocaleApplicatopn;
     }
+
+    public static String getMasterValue() {
+        return masterValue;
+    }
+    
     
     public static Connection getConnect() throws SQLException{
         return DriverManager.getConnection("jdbc:sqlite:"+ USER_APLICATION_FOLDER +"Teacher.db");

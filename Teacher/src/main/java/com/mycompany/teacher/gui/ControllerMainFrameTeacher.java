@@ -25,6 +25,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     private ModelMain modelMain;
     private Word word;
+    private int toggle;
     
     @FXML
     private Label labelWordLesson;
@@ -46,6 +47,7 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     @FXML
     private void buttonStartAction(){
+        modelMain.clear();
         start();
     }
     
@@ -121,7 +123,24 @@ public class ControllerMainFrameTeacher implements Initializable {
     
     private void fill(){
         word = modelMain.getElment();
-        labelWordLesson.setText(word.getWord());
+        switch (SettingsApplication.getMasterValue()){
+            case "word" :
+                labelWordLesson.setText(word.getWord());
+                toggle = 0;
+            break;
+            case "random" :
+                toggle = (int)(Math.random() * 1);
+                if(0 == toggle){
+                    labelWordLesson.setText(word.getWord());
+                }else{
+                    labelWordLesson.setText(word.getTranslate());
+                }
+            break;
+            case "translate" :
+                labelWordLesson.setText(word.getTranslate());
+                toggle = 1;
+            break;
+        }
         textAreaTranslate.setText("");
     }
     
@@ -141,13 +160,21 @@ public class ControllerMainFrameTeacher implements Initializable {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)event.getSource()).getScene().getWindow());
         DialogCheckWordController checkController = fxmlLoader.getController();
-        if (text.equals(word.getTranslate())){
+        if (text.equals(isValue())){
             checkController.setInfo(fxmlLoader.getResources().getString("key.labelMeassageGood"));
             modelMain.deleteItem();
         }else{
             checkController.setInfo(fxmlLoader.getResources().getString("key.laabelMeassageBead"));
         }
         stage.showAndWait();
+    }
+    
+    private String isValue(){
+        if (0 == toggle){
+            return word.getTranslate();
+        }else{
+            return word.getWord();
+        }
     }
     
 }

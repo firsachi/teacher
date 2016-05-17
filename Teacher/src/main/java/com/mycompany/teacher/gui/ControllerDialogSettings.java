@@ -26,11 +26,15 @@ public class ControllerDialogSettings implements Initializable{
     
     private final ObservableList<Integer> arrayTimeout;
     private final ObservableList<String> arrayLanguage;
+    private final ObservableList<String> arrayMasterValue;
     
     @FXML ComboBox comboBoxLanguage;
     
     @FXML
     private ComboBox comboBoxTimeout;
+    
+    @FXML
+    private ComboBox comboBoxMatesValue;
 
     @FXML Button buttonOk;
     
@@ -40,15 +44,18 @@ public class ControllerDialogSettings implements Initializable{
     public ControllerDialogSettings() {
         this.arrayLanguage = FXCollections.observableArrayList("eng","ukr");
         this.arrayTimeout = FXCollections.observableArrayList(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
+        this.arrayMasterValue = FXCollections.observableArrayList("word", "random", "translate");
     }
     
     @FXML
     private void actionButtonOk(ActionEvent event){
         Settings_dao settings_dao = new Settings_dao();
         settings_dao.setSettings((String)comboBoxLanguage.getValue(),
-                (Integer) comboBoxTimeout.getValue());
+                (Integer) comboBoxTimeout.getValue(), 
+                (String) comboBoxMatesValue.getValue());
         SettingsApplication.setLanuege((String) comboBoxLanguage.getValue());
         SettingsApplication.setTimeout((Integer) comboBoxTimeout.getValue());
+        SettingsApplication.setMasterValue((String) comboBoxMatesValue.getValue());
         actionButtonCancel();
     }
 
@@ -64,6 +71,8 @@ public class ControllerDialogSettings implements Initializable{
         comboBoxLanguage.setValue(SettingsApplication.getLanuege());
         comboBoxTimeout.setItems(arrayTimeout);
         comboBoxTimeout.setValue(SettingsApplication.getTimeout());
+        comboBoxMatesValue.setItems(arrayMasterValue);
+        comboBoxMatesValue.setValue(SettingsApplication.getMasterValue());
     }
     
 }

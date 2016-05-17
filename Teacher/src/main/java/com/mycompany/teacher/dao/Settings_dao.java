@@ -25,18 +25,20 @@ public class Settings_dao {
             if (resultSet.next()){
                 SettingsApplication.setLanuege(resultSet.getString(1));
                 SettingsApplication.setTimeout(resultSet.getInt(2));
+                SettingsApplication.setMasterValue(resultSet.getString(3));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void setSettings(String language, int timeout){
-        String sql="UPDATE settings SET language=?, timeout=? WHERE language=?";
+    public void setSettings(String language, int timeout, String masterValue){
+        String sql="UPDATE settings SET language=?, timeout=?, master=? WHERE language=?";
         try (PreparedStatement pr = SettingsApplication.getConnect().prepareStatement(sql);) {
             pr.setString(1, language);
             pr.setInt(2, timeout);
-            pr.setString(3, SettingsApplication.getLanuege());
+            pr.setString(3, masterValue);
+            pr.setString(4, SettingsApplication.getLanuege());
             pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);

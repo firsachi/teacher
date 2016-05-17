@@ -15,7 +15,7 @@
                <VBox.margin>
                   <Insets bottom="6.0" />
                </VBox.margin></Label>
-            <Label fx:id="labelWordLesson" prefHeight="171.0" prefWidth="300.0">
+            <Label fx:id="labelWordLesson" prefHeight="73.0" prefWidth="316.0">
                <padding>
                   <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                </padding>
@@ -25,7 +25,7 @@
                         <Insets bottom="6.0" top="6.0" />
                     </VBox.margin>
                 </Label>
-                <TextArea fx:id="textAreaTranslate" />
+                <TextArea fx:id="textAreaTranslate" prefHeight="83.0" prefWidth="316.0" />
             </children>
             <BorderPane.margin>
                 <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
@@ -33,19 +33,32 @@
         </VBox>
     </center>
     <bottom>
-        <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" prefHeight="25.0" prefWidth="301.0" text="%key.buttonOk" BorderPane.alignment="CENTER">
+        <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" prefHeight="25.0" prefWidth="314.0" text="%key.buttonOk" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                 <Insets bottom="12.0" left="12.0" right="12.0" />
             </BorderPane.margin>
         </Button>
     </bottom>
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <items>
-            <Button mnemonicParsing="false" onAction="#buttonStartAction" prefHeight="25.0" prefWidth="103.0" text="%key.buttonStart" />
-            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionButtonLearn" prefHeight="25.0" prefWidth="102.0" text="%key.buttonLearn" />
-            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="%key.buttonSettings" />
-         </items>
-      </ToolBar>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#buttonStartAction" prefHeight="25.0" prefWidth="103.0" text="%key.buttonStart">
+               <HBox.margin>
+                  <Insets right="3.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonLearn" mnemonicParsing="false" onAction="#actionButtonLearn" prefHeight="25.0" prefWidth="102.0" text="%key.buttonLearn">
+               <HBox.margin>
+                  <Insets left="3.0" right="3.0" />
+               </HBox.margin></Button>
+            <Button fx:id="buttonSettings" mnemonicParsing="false" onAction="#actionButtonSettings" prefHeight="25.0" prefWidth="99.0" text="%key.buttonSettings">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets left="12.0" right="12.0" top="12.0" />
+         </BorderPane.margin>
+      </HBox>
    </top>
 </BorderPane>
