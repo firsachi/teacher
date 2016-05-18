@@ -5,7 +5,7 @@
  */
 package com.mycompany.teacher.model;
 
-import com.mycompany.teacher.dao.Word_dao;
+import com.mycompany.teacher.dao.WordDao;
 import com.mycompany.teacher.exsampl.Word;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,7 +22,7 @@ public class ModelMain {
     
     public void fillModel(){
         counter++;
-        Word_dao word_dao = new Word_dao();
+        WordDao word_dao = new WordDao();
         if ((counter & 1) == 0){
             arrayWord = word_dao.randomLesson();
         }else{

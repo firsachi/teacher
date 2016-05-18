@@ -5,8 +5,8 @@
  */
 package com.mycompany.teacher.gui;
 
-import com.mycompany.teacher.dao.Lesson_dao;
-import com.mycompany.teacher.dao.Word_dao;
+import com.mycompany.teacher.dao.LessonDao;
+import com.mycompany.teacher.dao.WordDao;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import com.mycompany.teacher.exsampl.Word;
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class ControllerDialogLearn implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Lesson_dao lesson_dao = new Lesson_dao();
+        LessonDao lesson_dao = new LessonDao();
         lessonList = lesson_dao.getAllLesson();
         comboBoxLesson.setItems(lessonList);
         if(0 !=lessonList.size()){
@@ -79,14 +79,14 @@ public class ControllerDialogLearn implements Initializable{
     
     @FXML
     private void menuItemAddLessonAction(){
-        Lesson_dao lesson = new Lesson_dao();
+        LessonDao lesson = new LessonDao();
         String nameLesson = lesson.addLesson(lessonList.size());
         lessonList.add(nameLesson);
         comboBoxLesson.setValue(nameLesson);
     }
     
     private void fillTable(String lesson){
-        Word_dao word_dao = new Word_dao();
+        WordDao word_dao = new WordDao();
         wordList = word_dao.getAllWord(lesson);
         tableColumnWord.setCellValueFactory(new PropertyValueFactory<Word, String>("word"));
         tableColumnTranslate.setCellValueFactory(new PropertyValueFactory<Word, String>("translate"));

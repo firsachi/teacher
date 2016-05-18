@@ -5,7 +5,7 @@
  */
 package com.mycompany.teacher.exsampl;
 
-import com.mycompany.teacher.dao.Settings_dao;
+import com.mycompany.teacher.dao.SettingsDao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,7 +36,7 @@ public class SettingsApplication {
     private static String masterValue;
     
     static {
-        Settings_dao settings_dao = new Settings_dao();
+        SettingsDao settings_dao = new SettingsDao();
         settings_dao.getSettings();
     }
 
@@ -70,9 +70,5 @@ public class SettingsApplication {
     public static String getMasterValue() {
         return masterValue;
     }
-    
-    
-    public static Connection getConnect() throws SQLException{
-        return DriverManager.getConnection("jdbc:sqlite:"+ USER_APLICATION_FOLDER +"Teacher.db");
-    }
+
 }

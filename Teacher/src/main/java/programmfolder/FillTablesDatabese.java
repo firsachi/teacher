@@ -5,7 +5,7 @@
  */
 package programmfolder;
 
-import com.mycompany.teacher.exsampl.SettingsApplication;
+import com.mycompany.teacher.exsampl.ConnectSQLLite;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +18,11 @@ import java.util.logging.Logger;
  * @author firsov
  */
 public class FillTablesDatabese {
-    
+    //CREATE TABLE words (id integer NOt NULL, lesson varchar NOT NULL, word varchar NOT NULL, translate varchar NOT NULL, PRIMARY KEY (id), FOREIGN KEY (lesson) REFERENCES lessons(id))
+    //CREATE TABLE lessons (id varchar NOT NULL, PRIMARY KEY (id));
     public void checkTable(){
         try {
-            DatabaseMetaData databaseMetaData = SettingsApplication.getConnect().getMetaData();
+            DatabaseMetaData databaseMetaData = ConnectSQLLite.getConnection().getMetaData();
             try (ResultSet resultSet = databaseMetaData.getTables(null, null, "%", null)) {
                 if (resultSet.next()){
                     return ;
@@ -37,14 +38,14 @@ public class FillTablesDatabese {
     }
  
     private void createTableSettings(){
-        String sql ="CREATE TABLE settings (language varcyar(3) NOT NULL," +
+        String sql ="CREATE TABLE settings (language varchar(3) NOT NULL," +
                 " timeout integer(2) NOT NULL," +
-                " master varcyar(10) NOT NULL)";
+                " master varchar(10) NOT NULL)";
         add(sql);
     }
     
     private void addOneElement(){
-        String sql = "INSERT INTO settings (language,timeout) VALUES ('ukr',5)";
+        String sql = "INSERT INTO settings (language,timeout,master) VALUES ('ukr',5,'word')";
         add(sql);
     }
     
@@ -54,12 +55,14 @@ public class FillTablesDatabese {
     }
     
     private void createTableWord(){
-        String sql ="CREATE TABLE word (lesson varchar REFERENCES lesson(id), word varchar NOT NULL, translate varchar NOT NULL)";
+        String sql ="CREATE TABLE word (id int PRIMARY KEY NOT NULL, lesson varchar NOT NULL, " +
+                "word varchar NOT NULL, translate varchar NOT NULL," +
+                " FOREIGN KEY(lesson) REFERENCES lesson(id))";
         add(sql);
     }
     
     private void add(String sql){
-        try (Statement statement = SettingsApplication.getConnect().createStatement();) {
+        try (Statement statement = ConnectSQLLite.getConnection().createStatement();) {
             statement.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(FillTablesDatabese.class.getName()).log(Level.SEVERE, null, ex);

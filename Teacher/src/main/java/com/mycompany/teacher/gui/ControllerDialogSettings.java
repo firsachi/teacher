@@ -5,7 +5,7 @@
  */
 package com.mycompany.teacher.gui;
 
-import com.mycompany.teacher.dao.Settings_dao;
+import com.mycompany.teacher.dao.SettingsDao;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,7 +49,7 @@ public class ControllerDialogSettings implements Initializable{
     
     @FXML
     private void actionButtonOk(ActionEvent event){
-        Settings_dao settings_dao = new Settings_dao();
+        SettingsDao settings_dao = new SettingsDao();
         settings_dao.setSettings((String)comboBoxLanguage.getValue(),
                 (Integer) comboBoxTimeout.getValue(), 
                 (String) comboBoxMatesValue.getValue());

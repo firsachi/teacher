@@ -5,7 +5,7 @@
  */
 package com.mycompany.teacher.gui;
 
-import com.mycompany.teacher.dao.Word_dao;
+import com.mycompany.teacher.dao.WordDao;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +47,7 @@ public class DialogDeleteController implements Initializable {
     
     @FXML
     private void buttonOkAction(){
-        Word_dao word_dao = new Word_dao();
+        WordDao word_dao = new WordDao();
         resultAction = word_dao.deleteWord(word);
         buttonCancelAction();
     }

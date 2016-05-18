@@ -5,6 +5,7 @@
  */
 package com.mycompany.teacher.dao;
 
+import com.mycompany.teacher.exsampl.ConnectSQLLite;
 import com.mycompany.teacher.exsampl.SettingsApplication;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,11 +17,11 @@ import java.util.logging.Logger;
  *
  * @author firsov
  */
-public class Settings_dao {
+public class SettingsDao {
     
     public void getSettings(){
         String sql = "SELECT * FROM settings";
-        try (PreparedStatement preparedStatement = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement preparedStatement = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()){
                 SettingsApplication.setLanuege(resultSet.getString(1));
@@ -28,20 +29,20 @@ public class Settings_dao {
                 SettingsApplication.setMasterValue(resultSet.getString(3));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SettingsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void setSettings(String language, int timeout, String masterValue){
         String sql="UPDATE settings SET language=?, timeout=?, master=? WHERE language=?";
-        try (PreparedStatement pr = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement pr = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             pr.setString(1, language);
             pr.setInt(2, timeout);
             pr.setString(3, masterValue);
             pr.setString(4, SettingsApplication.getLanuege());
             pr.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Settings_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SettingsDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

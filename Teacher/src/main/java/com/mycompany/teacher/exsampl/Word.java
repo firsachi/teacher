@@ -14,14 +14,23 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Word {
     
+    private final int id;
+    private String lesson;
     private final SimpleStringProperty word = new SimpleStringProperty("");
     private final SimpleStringProperty tarnslate = new SimpleStringProperty("");
-    private String lesson;
 
+    public Word() {
+        this(0);
+    }
+
+    public Word(int id) {
+        this.id = id;
+    }
+     
     public void setTextWord(String textWord) {
         this.word.set(textWord.toLowerCase());
     }
-
+    
     public void setTextTarnslate(String textTarnslate) {
         this.tarnslate.set(textTarnslate.toLowerCase());
     }
@@ -36,6 +45,10 @@ public class Word {
 
     public SimpleStringProperty getTarnslateprProperty() {
         return tarnslate;
+    }
+
+    public int getId() {
+        return id;
     }
     
     public String getWord(){

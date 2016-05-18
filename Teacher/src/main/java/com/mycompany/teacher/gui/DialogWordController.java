@@ -6,7 +6,7 @@ package com.mycompany.teacher.gui;
  * and open the template in the editor.
  */
 
-import com.mycompany.teacher.dao.Word_dao;
+import com.mycompany.teacher.dao.WordDao;
 import com.mycompany.teacher.exsampl.CheckString;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
@@ -40,7 +40,7 @@ public class DialogWordController implements Initializable {
     
     private String lesson;
     private Word word;
-    private Word_dao word_dao;
+    private WordDao word_dao;
     private boolean resultAction;
     
     /**
@@ -51,7 +51,7 @@ public class DialogWordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-       word_dao = new Word_dao();
+       word_dao = new WordDao();
        resultAction = false;
     }
 

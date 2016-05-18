@@ -5,7 +5,7 @@
  */
 package com.mycompany.teacher.dao;
 
-import com.mycompany.teacher.exsampl.SettingsApplication;
+import com.mycompany.teacher.exsampl.ConnectSQLLite;
 import com.mycompany.teacher.exsampl.Word;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,19 +20,19 @@ import javafx.collections.ObservableList;
  *
  * @author firsov
  */
-public class Word_dao {
+public class WordDao {
     
     public ObservableList<Word> getAllWord(String lesson){
         ObservableList<Word> lessonWords = FXCollections.observableArrayList();
         String sql = "SELECT * FROM word WHERE lesson=?";
-        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, lesson);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
                 lessonWords.add((Word) initWord(resultSet));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lessonWords;
     }
@@ -40,14 +40,14 @@ public class Word_dao {
     public boolean addWordb(Word word){
         boolean result = false;
         String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
-        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, word.getLesson());
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
             ps.executeUpdate();
             result = true;
         } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
     }
@@ -57,7 +57,7 @@ public class Word_dao {
             return true;
         }
         String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
-         try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
+         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, word.getWord());
             ps.setString(2, word.getTranslate());
             ps.setString(3, oldWord.getWord());
@@ -66,21 +66,21 @@ public class Word_dao {
             ps.executeUpdate();
             return true;
          } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     public boolean deleteWord(Word word) {
         String sql = "DELETE FROM word WHERE lesson=? AND word=? AND translate=?";
-        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, word.getLesson());
             ps.setString(2, word.getWord());
             ps.setString(3, word.getTranslate());
             ps.executeUpdate();
             return  true;
         } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -97,13 +97,13 @@ public class Word_dao {
         
     private ArrayList<Word> resultSelect(String sql) {
         ArrayList<Word> resultArray = new ArrayList<>();
-        try (PreparedStatement ps = SettingsApplication.getConnect().prepareStatement(sql);) {
+        try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 resultArray.add(initWord(rs));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultArray;
     }
@@ -115,7 +115,7 @@ public class Word_dao {
             word.setTextWord(resultSet.getString(2));
             word.setTextTarnslate(resultSet.getString(3));
         } catch (SQLException ex) {
-            Logger.getLogger(Word_dao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return word;
     }
