@@ -11,7 +11,7 @@
    <bottom>
       <FlowPane alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
+            <Button fx:id="buttonOk" mnemonicParsing="false" onAction="#buttonOkAction" text="%key.buttonOk">
                <FlowPane.margin>
                   <Insets right="3.0" />
                </FlowPane.margin>
@@ -38,18 +38,18 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-            <Label prefHeight="17.0" prefWidth="92.0" text="%key.labelWord" textAlignment="RIGHT">
+            <Label fx:id="labelWord" prefHeight="17.0" prefWidth="92.0" text="%key.labelWord" textAlignment="RIGHT">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>
             </Label>
-            <Label text="%key.labelTranslate" textAlignment="RIGHT" GridPane.rowIndex="1">
+            <Label fx:id="labelTranslate" text="%key.labelTranslate" textAlignment="RIGHT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="textFiledWord" onKeyPressed="#textFiledWordAction" GridPane.columnIndex="1" />
-            <TextField fx:id="textFiledTranslate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textFiledWord" onKeyReleased="#textFiledWordAction" GridPane.columnIndex="1" />
+            <TextField fx:id="textFiledTranslate" onKeyReleased="#textFiledTranslateKeyAction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
          <BorderPane.margin>
             <Insets bottom="6.0" left="12.0" right="12.0" top="12.0" />

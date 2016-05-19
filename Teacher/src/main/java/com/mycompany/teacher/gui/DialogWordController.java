@@ -7,6 +7,7 @@ package com.mycompany.teacher.gui;
  */
 
 import com.mycompany.teacher.dao.WordDao;
+import com.mycompany.teacher.exsampl.Check;
 import com.mycompany.teacher.exsampl.CheckString;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
@@ -30,10 +31,19 @@ public class DialogWordController implements Initializable {
     private Label labelError;
     
     @FXML
+    private Label labelWord;
+    
+    @FXML 
+    private Label labelTranslate;
+    
+    @FXML
     private TextField textFiledWord;
     
     @FXML
     private TextField textFiledTranslate;
+    
+    @FXML
+    private Button buttonOk;
     
     @FXML
     private Button buttonCancel;
@@ -42,6 +52,9 @@ public class DialogWordController implements Initializable {
     private Word word;
     private WordDao word_dao;
     private boolean resultAction;
+    private String tmpWord;
+    private String tmpTranslate;
+    private Check check = new Check();
     
     /**
      * Initializes the controller class.
@@ -66,21 +79,38 @@ public class DialogWordController implements Initializable {
     }
     
     @FXML
-    private void textFiledWordAction(){
-        CheckString checkString = new CheckString();
-        if(checkString.checkValue(textFiledWord.getText())){
-            labelError.setText("fjlsdjflksjdfl");
-        }else{
+    private boolean textFiledWordAction(){
+       return semdMessage(check.checkEmpty(textFiledWord.getText()), textFiledWord, labelWord);
+    }
+    
+    @FXML
+    private boolean textFiledTranslateKeyAction(){
+        return semdMessage(check.checkEmpty(textFiledTranslate.getText()), textFiledTranslate, labelTranslate);
+    }
+    
+    private boolean semdMessage(boolean flag, TextField textField, Label label){
+        if (flag){
+            label.setStyle("-fx-text-fill: black");
+            //textField.setStyle("-fx-border-color: gray");
             labelError.setText("");
+            buttonOk.setVisible(flag);
+            return true;
+        }else{
+            label.setStyle("-fx-text-fill: red");
+            //textField.setStyle("-fx-border-color: red");
+            labelError.setText("Поле виділене червоним не повино бути порожнім");
+            buttonOk.setVisible(flag);
+            return false;
         }
     }
     
     @FXML
     private void buttonOkAction(ActionEvent event){
+        fillVariable();
         if (null != word){
             updateItemDetebace();
             buttonCancelAction();
-        }else {
+        }else if (textFiledWordAction()& textFiledTranslateKeyAction()) {
             addItemDatabace();
             buttonCancelAction();
         }
@@ -100,16 +130,20 @@ public class DialogWordController implements Initializable {
     }
 
     private void updateItemDetebace() {
-        Word old = new Word();
-        old.setTextWord(word.getWord());
-        old.setTextTarnslate(word.getTranslate());
-        fillWord();
-       // resultAction = word_dao.editWord(word, old);
+        if (tmpWord.equals(word.getWord())|tmpTranslate.equals(word.getTranslate())){
+            fillWord();
+            resultAction = word_dao.editWord(word);
+        }
     }
     
     private void fillWord(){
-        word.setTextWord(textFiledWord.getText().trim());
-        word.setTextTarnslate(textFiledTranslate.getText().trim());
+        word.setTextWord(tmpWord);
+        word.setTextTarnslate(tmpTranslate);
+    }
+    
+    private void fillVariable(){
+        tmpWord = textFiledWord.getText().trim();
+        tmpTranslate = textFiledTranslate.getText().trim();
     }
     
     public Word getWord() {
