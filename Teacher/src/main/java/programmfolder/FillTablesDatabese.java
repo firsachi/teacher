@@ -18,8 +18,7 @@ import java.util.logging.Logger;
  * @author firsov
  */
 public class FillTablesDatabese {
-    //
-    //;
+
     public void checkTable(){
         try {
             DatabaseMetaData databaseMetaData = ConnectSQLLite.getConnection().getMetaData();
