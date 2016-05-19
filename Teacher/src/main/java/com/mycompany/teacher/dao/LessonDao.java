@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 public class LessonDao {
     
     public ObservableList<String> getAllLesson(){
-        String sql = "SELECT * FROM lesson";
+        String sql = "SELECT * FROM lessons";
         ObservableList<String> lessonList = FXCollections.observableArrayList();
         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ResultSet resultSet = ps.executeQuery();
@@ -35,7 +35,7 @@ public class LessonDao {
     }
     
     public String addLesson(int number){
-        String sql = "INSERT INTO lesson (id) VALUES (?);";
+        String sql = "INSERT INTO lessons (id) VALUES (?);";
         String result = number + 1 + "lesson";
         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, result);

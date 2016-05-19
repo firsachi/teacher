@@ -24,7 +24,7 @@ public class WordDao {
     
     public ObservableList<Word> getAllWord(String lesson){
         ObservableList<Word> lessonWords = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM word WHERE lesson=?";
+        String sql = "SELECT * FROM words WHERE lesson=?";
         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, lesson);
             ResultSet resultSet = ps.executeQuery();
@@ -39,7 +39,7 @@ public class WordDao {
     
     public boolean addWordb(Word word){
         boolean result = false;
-        String sql = "INSERT INTO word (lesson,word,translate) VALUES (?,?,?)";
+        String sql = "INSERT INTO words (lesson,word,translate)VALUES (?,?,?)";
         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, word.getLesson());
             ps.setString(2, word.getWord());
@@ -52,17 +52,12 @@ public class WordDao {
         return result;
     }
     
-    public boolean editWord(Word word, Word oldWord){
-        if(oldWord.equals(word)){
-            return true;
-        }
-        String sql = "UPDATE word SET word=?,translate=? WHERE word=? AND translate=? AND lesson=?";
+    public boolean editWord(Word word){
+        String sql = "UPDATE words SET word=?,translate=? WHERE id=?";
          try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
             ps.setString(1, word.getWord());
             ps.setString(2, word.getTranslate());
-            ps.setString(3, oldWord.getWord());
-            ps.setString(4, oldWord.getTranslate());
-            ps.setString(5, word.getLesson());
+            ps.setInt(3, word.getId());
             ps.executeUpdate();
             return true;
          } catch (SQLException ex) {
@@ -72,11 +67,9 @@ public class WordDao {
     }
 
     public boolean deleteWord(Word word) {
-        String sql = "DELETE FROM word WHERE lesson=? AND word=? AND translate=?";
+        String sql = "DELETE FROM words WHERE id=?";
         try (PreparedStatement ps = ConnectSQLLite.getConnection().prepareStatement(sql);) {
-            ps.setString(1, word.getLesson());
-            ps.setString(2, word.getWord());
-            ps.setString(3, word.getTranslate());
+            ps.setInt(1, word.getId());
             ps.executeUpdate();
             return  true;
         } catch (SQLException ex) {
@@ -86,12 +79,12 @@ public class WordDao {
     }
 
     public ArrayList<Word> getLessonLast() {
-        String sql ="SELECT * FROM word WHERE lesson = (SELECT * from lesson ORDER BY id DESC LIMIT 1)";
+        String sql ="SELECT * FROM words WHERE lesson = (SELECT * from lessons ORDER BY id DESC LIMIT 1)";
         return resultSelect(sql);
     }
     
     public ArrayList<Word> randomLesson(){
-        String sql = "SELECT * FROM word WHERE lesson = (SELECT * FROM lesson ORDER BY RANDOM() LIMIT 1)";
+        String sql = "SELECT * FROM words WHERE lesson = (SELECT * FROM lessons ORDER BY RANDOM() LIMIT 1)";
         return resultSelect(sql);
     }
         
@@ -109,15 +102,17 @@ public class WordDao {
     }
     
     private Word initWord(ResultSet resultSet){
-        Word word = new Word();
+        
         try {
-            word.setLesson(resultSet.getString(1));
-            word.setTextWord(resultSet.getString(2));
-            word.setTextTarnslate(resultSet.getString(3));
+            Word word = new Word(resultSet.getInt(1));
+            word.setLesson(resultSet.getString(2));
+            word.setTextWord(resultSet.getString(3));
+            word.setTextTarnslate(resultSet.getString(4));
+            return word;
         } catch (SQLException ex) {
             Logger.getLogger(WordDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return word;
+        return null;
     }
 
 }

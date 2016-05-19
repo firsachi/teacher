@@ -18,8 +18,8 @@ import java.util.logging.Logger;
  * @author firsov
  */
 public class FillTablesDatabese {
-    //CREATE TABLE words (id integer NOt NULL, lesson varchar NOT NULL, word varchar NOT NULL, translate varchar NOT NULL, PRIMARY KEY (id), FOREIGN KEY (lesson) REFERENCES lessons(id))
-    //CREATE TABLE lessons (id varchar NOT NULL, PRIMARY KEY (id));
+    //
+    //;
     public void checkTable(){
         try {
             DatabaseMetaData databaseMetaData = ConnectSQLLite.getConnection().getMetaData();
@@ -50,14 +50,17 @@ public class FillTablesDatabese {
     }
     
     private void createTableLesson(){
-        String sql ="CREATE TABLE lesson (id varchar PRIMARY KEY)";
+        String sql ="CREATE TABLE lessons (id varchar NOT NULL, PRIMARY KEY (id))";
         add(sql);
     }
     
     private void createTableWord(){
-        String sql ="CREATE TABLE word (id int PRIMARY KEY NOT NULL, lesson varchar NOT NULL, " +
-                "word varchar NOT NULL, translate varchar NOT NULL," +
-                " FOREIGN KEY(lesson) REFERENCES lesson(id))";
+        String sql ="CREATE TABLE words ("
+                + "id integer PRIMARY KEY NOT NULL, "
+                + "lesson varchar NOT NULL, "
+                + "word varchar NOT NULL, "
+                + "translate varchar NOT NULL, "
+                + "FOREIGN KEY (lesson) REFERENCES lessons(id))";
         add(sql);
     }
     
