@@ -104,7 +104,7 @@ public class DialogWordController implements Initializable {
         old.setTextWord(word.getWord());
         old.setTextTarnslate(word.getTranslate());
         fillWord();
-        resultAction = word_dao.editWord(word, old);
+       // resultAction = word_dao.editWord(word, old);
     }
     
     private void fillWord(){
