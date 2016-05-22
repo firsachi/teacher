@@ -8,7 +8,6 @@ package com.mycompany.teacher.gui;
 
 import com.mycompany.teacher.dao.WordDao;
 import com.mycompany.teacher.exsampl.Check;
-import com.mycompany.teacher.exsampl.CheckString;
 import com.mycompany.teacher.exsampl.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -80,24 +79,22 @@ public class DialogWordController implements Initializable {
     
     @FXML
     private boolean textFiledWordAction(){
-       return semdMessage(check.checkEmpty(textFiledWord.getText()), textFiledWord, labelWord);
+       return semdMessage(check.checkEmpty(textFiledWord.getText()), labelWord);
     }
     
     @FXML
     private boolean textFiledTranslateKeyAction(){
-        return semdMessage(check.checkEmpty(textFiledTranslate.getText()), textFiledTranslate, labelTranslate);
+        return semdMessage(check.checkEmpty(textFiledTranslate.getText()), labelTranslate);
     }
     
-    private boolean semdMessage(boolean flag, TextField textField, Label label){
+    private boolean semdMessage(boolean flag, Label label){
         if (flag){
             label.setStyle("-fx-text-fill: black");
-            //textField.setStyle("-fx-border-color: gray");
             labelError.setText("");
             buttonOk.setVisible(flag);
             return true;
         }else{
             label.setStyle("-fx-text-fill: red");
-            //textField.setStyle("-fx-border-color: red");
             labelError.setText("Поле виділене червоним не повино бути порожнім");
             buttonOk.setVisible(flag);
             return false;
