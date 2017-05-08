@@ -1,8 +1,7 @@
 package com.mycompany.teacher.model.dao;
 
+import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.TypedQuery;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,17 +15,19 @@ public class LessonDaoImpl implements BaseDao<Lesson>{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	protected Session getSession() {
+		return this.sessionFactory.getCurrentSession();
+	}
 
 	@Override
 	public void seve(Lesson entity) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(entity);
+		getSession().save(entity);
 	}
 
 	@Override
 	public void update(Lesson entity) {
-		Session session = sessionFactory.getCurrentSession();
-		session.update(entity);
+		getSession().update(entity);
 	}
 
 	@Override
@@ -35,16 +36,15 @@ public class LessonDaoImpl implements BaseDao<Lesson>{
 	}
 
 	@Override
-	public Lesson byId(long id) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.find(Lesson.class, id);
+	public Lesson byId(Serializable id) {
+		return getSession().get(Lesson.class, id);
 	}
 
 	@Override
 	public List<Lesson> getList(String qery) {
-		Session session = sessionFactory.getCurrentSession();
-		//TypedQuery<Lesson> typedQuery = session.cre
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

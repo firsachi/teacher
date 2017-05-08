@@ -15,7 +15,7 @@
         <persistence-version>2.1.0</persistence-version>
         <sqlite-version>3.8.11.2</sqlite-version>
         <hibernate-version>5.2.5.Final</hibernate-version>
-        <springframework-version>4.3.2.RELEASE</springframework-version>
+        <springframework-version>4.3.8.RELEASE</springframework-version>
     </properties>
 
     <organization>
@@ -129,19 +129,19 @@
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-version}</version>
+		
+		<!-- springframework -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${springframework-version}</version>
         </dependency>
         
-		<dependency>
-    		<groupId>org.hibernate</groupId>
-    		<artifactId>hibernate-validator</artifactId>
-    		<version>5.4.0.Final</version>
-		</dependency>
-		
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework-version}</version>
+        </dependency>
     </dependencies>
 
 </project>

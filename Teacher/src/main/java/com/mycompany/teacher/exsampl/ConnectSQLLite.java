@@ -23,7 +23,7 @@ public final class ConnectSQLLite {
 
     private ConnectSQLLite() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:"+ USER_APLICATION_FOLDER +"Teacher.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:"+ USER_APLICATION_FOLDER +"c");
         } catch (SQLException ex) {
             Logger.getLogger(ConnectSQLLite.class.getName()).log(Level.SEVERE, null, ex);
         }

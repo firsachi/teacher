@@ -6,9 +6,6 @@
 package com.mycompany.teacher.exsampl;
 
 import com.mycompany.teacher.dao.SettingsDao;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Locale;
 import programmfolder.FillTablesDatabese;
 import programmfolder.FolederProgramm;
